@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--    按压状态-->
+    <item android:color="@color/blue" android:state_pressed="true" />
+
+    <!--    获得焦点-->
+    <item android:color="@color/green" android:state_focused="true" />
+
+    <!--    应用窗口获得焦点的状态-->
+    <item android:color="@color/gray" android:state_window_focused="false" />
+
+    <!--    鼠标移动到控件-->
+    <item android:color="@color/colorAccent" android:state_hovered="true" />
+
+    <!--默认-->
+    <item android:color="@color/black" />
+
+</selector>

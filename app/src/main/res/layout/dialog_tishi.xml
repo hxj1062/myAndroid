@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_common_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true">
+
+    <TextView
+        android:id="@+id/dialog_tips_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Outstanding Payment Notification"
+        android:textColor="#2B2B2B"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/dialog_tips_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_tips_title"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:text="You have an outstanding payment. Kindly proceed to make the payment in order to continue using Smart Cabinet."
+        android:textColor="#8E8E8E"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/ll_fdas"
+        android:background="#D8D8D8" />
+
+    <LinearLayout
+        android:id="@+id/ll_fdas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialog_btn_cancle"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="#666666 "
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#D8D8D8" />
+
+        <Button
+            android:id="@+id/dialog_btn_confirm"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="Pay Now"
+            android:textAllCaps="false"
+            android:textColor="#FF6600"
+            android:textSize="14sp" />
+    </LinearLayout>
+</RelativeLayout>
+

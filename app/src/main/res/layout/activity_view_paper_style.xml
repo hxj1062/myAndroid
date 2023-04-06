@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.look.views.ViewPaperStyleActivity">
+
+    <com.example.look.customview.TitleBar
+        android:id="@+id/tex"
+        android:layout_width="match_parent"
+        app:title="ViewPaper"
+        android:layout_height="0dp"
+        app:right_txt="更多"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/papaer"
+        app:layout_constraintTop_toBottomOf="@+id/tex"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <androidx.viewpager.widget.PagerTabStrip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.viewpager.widget.ViewPager>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

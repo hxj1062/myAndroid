@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_common_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true">
+
+    <TextView
+        android:id="@+id/dialog_tips_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="温馨提示"
+        android:textColor="#2B2B2B"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/dialog_tips_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_below="@+id/dialog_tips_title"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="提现：客户从友客云钱包提现成功的明细数据\n充值：客户通过充值进入友客云钱包的金额\n\n收款：友客云通过华夏银行结算系统付给客户的结算款。友客云会先付款账单金额大于0的结算款，再扣除账单金额为负的结算款\n\n资金冻结：T+1结算客户部分支付方式(除微信/支付宝/代运营现金等之外)的销售款需要月结，每月1号会解冻上月的冻结款"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_fdas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#D8D8D8" />
+
+        <Button
+            android:id="@+id/dialog_btn_tips"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:gravity="center"
+            android:text="确定"
+            android:textAllCaps="false"
+            android:textColor="@color/blue"
+            android:textSize="14sp" />
+    </LinearLayout>
+</RelativeLayout>
+

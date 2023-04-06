@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.look.views.BtnClickEffectActivity">
+
+
+    <Button
+        android:id="@+id/btn_testA"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@color/deepBlue"
+        android:text="A按钮"
+        android:textColor="#DDFFFFFF"
+        android:textSize="@dimen/font_16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_testB"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@color/deepBlue"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="B按钮"
+        android:textColor="#DDFFFFFF"
+        android:textSize="@dimen/font_16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_testA" />
+
+
+    <Button
+        android:id="@+id/btn_testC"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_20"
+        android:background="@drawable/btn_effect"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="C按钮"
+        android:textColor="#DDFFFFFF"
+        android:textSize="@dimen/font_16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_testB" />
+
+    <Button
+        android:id="@+id/btn_testD"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_200"
+        android:layout_marginTop="@dimen/dp_60"
+        android:text="Selector状态选择器"
+        android:textColor="@color/btn_text_color"
+        android:textSize="@dimen/font_16"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_testC" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

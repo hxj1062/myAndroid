@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.example.look.customview.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Activity参数传递示例" />
+
+    <Button
+        android:id="@+id/btn_simple"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_60"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="简单参数" />
+
+    <Button
+        android:id="@+id/btn_complex"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_60"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="复杂参数" />
+
+    <Button
+        android:id="@+id/btn_Serializable"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_60"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="Serializable"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_Parcelable"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_60"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="Parcelable"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_Singleton"
+        android:layout_width="@dimen/dp_200"
+        android:layout_height="@dimen/dp_60"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_20"
+        android:text="Singleton单例模式"
+        android:textAllCaps="false" />
+
+
+</LinearLayout>

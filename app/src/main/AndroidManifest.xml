@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.demo">
+    <!-- 获取权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 安卓8.0适配安装APK -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!-- 蓝牙相关 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo_icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.example.look.views.DataATransferActivity"
+            android:exported="true" />
+        <activity android:name="com.example.look.views.DataBTransferActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.look.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
+
+        <activity
+            android:name="com.example.look.views.ViewPaperStyleActivity"
+            android:exported="true" />
+        <activity android:name="com.example.look.views.BlueToothActivity" />
+        <activity android:name="com.example.look.views.LoginActivity" />
+        <activity android:name="com.example.look.views.CameraTestActivity" />
+        <activity android:name="com.example.look.views.AboutListViewActivity" />
+        <activity android:name="com.example.look.views.UITreadActivity" />
+        <activity android:name="com.example.look.views.BtnClickEffectActivity" />
+        <activity
+            android:name="com.example.look.views.BroadCastActivity"
+            android:exported="true" />
+        <activity android:name="com.example.look.views.ALifeCycleActivity" />
+        <activity android:name="com.example.look.views.BLifeCycleActivity" />
+        <activity
+            android:name="com.example.look.views.GoodsListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/StartTheme">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity android:name="com.example.look.views.SplashActivity">
+
+        </activity>
+        <activity
+            android:name="com.example.look.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/StartTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

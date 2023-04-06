@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/app_main">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="14dp"
+        android:src="@drawable/head_back" />
+
+
+    <TextView
+        android:text="标题"
+        android:id="@+id/tv_title"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_gravity="right|center_vertical"
+        android:textColor="@color/white"
+        android:text="更多"
+        android:textStyle="bold"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:textSize="@dimen/font_16"
+        android:paddingRight="@dimen/dp_20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</FrameLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <!--适中的板岩暗蓝灰色  主题颜色-->
+    <color name="app_main">#7B68EE</color>
+    <!--深紫罗兰的蓝色 字体颜色-->
+    <color name="app_word">#8A2BE2</color>
+    <color name="transparent">#00000000</color>
+    <color name="red">#FF0000</color>
+    <color name="orange">#FFA500</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="green">#008000</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="deepBlue">#00008B</color>
+    <color name="purple">#800080</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="gray">#808080</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="color_FFC0CB">#FFC0CB</color>
+    <color name="color_000000">#000000</color>
+    <color name="color_F5F5F5">#F5F5F5</color>
+    <color name="color_800080">#800080</color>
+    <color name="color_00008B">#00008B</color>
+    <color name="color_0000FF">#0000FF</color>
+    <color name="color_00FFFF">#00FFFF</color>
+    <color name="color_008000">#008000</color>
+    <color name="color_FFA500">#FFA500</color>
+    <color name="color_FFFF00">#FFFF00</color>
+    <color name="color_BFC4CD">#BFC4CD</color>
+    <color name="color_00BFFF">#00BFFF</color>
+    <color name="color_808080">#808080</color>
+    <color name="color_696969">#696969</color>
+    <color name="color_C0C0C0">#C0C0C0</color>
+    <color name="color_FF0000">#FF0000</color>
+    <color name="color_FFFFFF">#FFFFFF</color>
+    <color name="color_35F535">#35F535</color>
+    <color name="color_3090FF">#FF3090FF</color>
+    <color name="color_339A9A9A">#339A9A9A</color>
+    <color name="color_3C000000">#3C000000</color>
+
+
+</resources>

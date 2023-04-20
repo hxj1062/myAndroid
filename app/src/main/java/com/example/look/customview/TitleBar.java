@@ -3,6 +3,7 @@ package com.example.look.customview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -43,18 +44,19 @@ public class TitleBar extends FrameLayout {
 
     // 初始化资源文件
     private void init(final Context context, AttributeSet attrs) {
-
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TitleBar);
         String title = typedArray.getString(R.styleable.TitleBar_title);
         int leftIcon = typedArray.getResourceId(R.styleable.TitleBar_left_icon, R.drawable.head_back);
         String rightTxt = typedArray.getString(R.styleable.TitleBar_right_txt);
-
+        boolean auto_get_line = typedArray.getBoolean(R.styleable.TitleBar_auto_get_line, true);
         ivBack.setImageResource(leftIcon);
         tvTitle.setText(title);
         tvMore.setText(rightTxt);
-
+        // 添加属性控制执行流程
+        if (auto_get_line) {
+            testPrint();
+        }
         typedArray.recycle();
-
         ivBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,4 +77,8 @@ public class TitleBar extends FrameLayout {
         tvMore.setOnClickListener(clickListener);
     }
 
+
+    private void testPrint() {
+        Log.d("新增属性", "添加auto_get_line属性");
+    }
 }

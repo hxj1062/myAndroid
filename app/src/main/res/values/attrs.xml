@@ -9,6 +9,8 @@
         <attr name="left_icon" format="reference" />
         <attr name="title" format="string" />
         <attr name="right_txt" format="string" />
+        <!--自定义控件增加一个属性控制代码执行流程-->
+        <attr name="auto_get_line" format="boolean" />
     </declare-styleable>
 
 

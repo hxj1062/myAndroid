@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:TitleBar="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/login_relative666"
     android:layout_width="match_parent"
@@ -9,9 +9,11 @@
     tools:context="com.example.look.MainActivity">
 
     <com.example.look.customview.TitleBar
+        android:id="@+id/bar_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="测试用" />
+        TitleBar:auto_get_line="true"
+        TitleBar:title="测试用" />
 
     <Button
         android:id="@+id/btn_jump"
@@ -34,7 +36,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/font_18"
         android:textStyle="bold"
-        tools:text="这是一个用于测试的App" />
+        tools:text="测试用例" />
 
     <ImageView
         android:id="@+id/iv_env_change"

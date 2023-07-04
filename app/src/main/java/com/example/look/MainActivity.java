@@ -3,6 +3,8 @@ package com.example.look;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -30,6 +32,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.demo.R;
@@ -42,6 +45,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import java.lang.reflect.Field;
 import java.util.Hashtable;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private DisplayMetrics screeMessage;
     private boolean isTouch = true;
     private int i = 0;
+    boolean flagsss = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +68,29 @@ public class MainActivity extends AppCompatActivity {
         login_relative = findViewById(R.id.login_relative666);
 
         TextView tv_span = findViewById(R.id.tv_span);
-        String str = String.format(getString(R.string.user_use_name), "huang", "xinjia");
-        tv_span.setText(str);
+        //  String str = String.format(getString(R.string.user_use_name), "huang", "xinjia");
+
+
+        tv_span.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (flagsss) {
+                    tv_span.setText("充值金额");
+                    flagsss = false;
+                } else {
+                    tv_span.setText("结算金额");
+                    flagsss = true;
+                }
+
+            }
+        });
+
 
         findViewById(R.id.btn_jump).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTipsDialog();
+                boolean bbb = isNeedUpdate("1.2.6", "1.3.2");
+                Toast.makeText(MainActivity.this, "是否要更新" + bbb, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -94,6 +115,36 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void xitong() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialog);
+        AlertDialog dialog = builder.setTitle("存在未签约合同，请先签署\n后再下单，谢谢！").setPositiveButton("跳转签属", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).create();
+        dialog.show();
+        Button logOut = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        logOut.setTextSize(18);
+        logOut.setTextColor(Color.parseColor("#3090FF"));
+        try {
+            //获取mAlert对象
+            Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
+            mAlert.setAccessible(true);
+            Object mAlertController = mAlert.get(dialog);
+
+            //获取mTitleView并设置大小颜色
+            Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
+            mTitle.setAccessible(true);
+            TextView mTitleView = (TextView) mTitle.get(mAlertController);
+            mTitleView.setTextSize(28);
+            mTitleView.setTextColor(Color.BLACK);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -206,6 +257,21 @@ public class MainActivity extends AppCompatActivity {
         // 方式二：当window属性改变的时候也会调用此方法，同样可以实现
         // dialog.onWindowAttributesChanged(params);
         dialog.show();
+    }
+
+    public static void signContact(Context cont) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(cont, R.style.CustomAlertDialog);
+        AlertDialog dialog = builder.setTitle("存在未签约合同，请先签署\n后再下单，谢谢！").setPositiveButton("跳转签属", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).create();
+        dialog.show();
+        Button logOut = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        logOut.setTextSize(18);
+        logOut.setTextColor(Color.parseColor("#F55C33"));
+
     }
 
     private void showNoticeDialog() {
@@ -366,6 +432,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    // 版本号比较  例如: 1.1.1和1.1.2
+    public static boolean isNeedUpdate(String currentVersion, String anotherVersion) {
+        String[] v1 = currentVersion.split("\\.");
+        String[] v2 = anotherVersion.split("\\.");
+        int len1 = v1.length;
+        int len2 = v2.length;
+        int lim = Math.min(len1, len2);
+        int k = 0;
+        while (k < lim) {
+            String c1 = v1[k];
+            String c2 = v2[k];
+            if (Integer.parseInt(c1) != Integer.parseInt(c2)) {
+                return Integer.parseInt(c1) - Integer.parseInt(c2) < 0;
+            }
+            k++;
+        }
+        return len1 - len2 < 0;
+    }
 
 }
 

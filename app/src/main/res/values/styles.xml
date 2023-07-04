@@ -58,4 +58,14 @@
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <style name="CustomAlertDialog" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <item name="buttonBarButtonStyle">@style/CustomAlertDialogButton</item>
+
+    </style>
+
+    <style name="CustomAlertDialogButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="textAllCaps">false</item> <!--关闭默认大写的设置 -->
+        <item name="colorAccent">@color/black</item>
+    </style>
 </resources>

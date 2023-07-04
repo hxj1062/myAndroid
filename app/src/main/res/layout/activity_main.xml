@@ -36,7 +36,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/font_18"
         android:textStyle="bold"
-        tools:text="测试用例" />
+        android:text="结算金额" />
 
     <ImageView
         android:id="@+id/iv_env_change"

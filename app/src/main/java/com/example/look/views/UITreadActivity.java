@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.demo.R;
+import com.example.look.R;
 
 public class UITreadActivity extends AppCompatActivity implements View.OnClickListener {
 

@@ -9,7 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.demo.R;
+import com.example.look.R;
+
 
 public class FirstFragment extends Fragment {
 

@@ -1,7 +1,7 @@
 package com.example.look;
 
-
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,23 +21,29 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.demo.R;
+import com.example.look.bean.AccountOpenInfo;
+import com.example.look.customview.AccountOpenInfoDialog;
 import com.example.look.customview.CommonDialog;
 import com.example.look.customview.NoticeDialog;
+import com.example.look.customview.SignBoardView;
 import com.example.look.utils.DimensionUtil;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -46,7 +52,9 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean isTouch = true;
     private int i = 0;
     boolean flagsss = true;
+    private AccountOpenInfoDialog mListAlertDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         TextView tv_span = findViewById(R.id.tv_span);
         //  String str = String.format(getString(R.string.user_use_name), "huang", "xinjia");
 
-
         tv_span.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     tv_span.setText("结算金额");
                     flagsss = true;
                 }
-
             }
         });
 
@@ -89,8 +97,47 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_jump).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean bbb = isNeedUpdate("1.2.6", "1.3.2");
-                Toast.makeText(MainActivity.this, "是否要更新" + bbb, Toast.LENGTH_LONG).show();
+                List<AccountOpenInfo> testData = new ArrayList<>();
+                testData.add(new AccountOpenInfo("客户编号：NOT111", "客户名称：曹操", "资金存管手机号：123456789", "招商银行：189159456123456"));
+                testData.add(new AccountOpenInfo("客户编号：NOT222", "客户名称：关羽", "资金存管手机号：987456123", "邮政银行：254158789123456"));
+                testData.add(new AccountOpenInfo("客户编号：NOT333", "客户名称：郭靖", "资金存管手机号：852147963", "华夏银行：335147478123456"));
+                testData.add(new AccountOpenInfo("客户编号：NOT444", "客户名称：黄蓉", "资金存管手机号：965478912", "农业银行：435158478123456"));
+                testData.add(new AccountOpenInfo("客户编号：NOT555", "客户名称：杨过", "资金存管手机号：453698752", "建设银行：554715689123456"));
+                testData.add(new AccountOpenInfo("客户编号：NOT666", "客户名称：张飞", "资金存管手机号：458796215", "工商银行：664148848123456"));
+                testData.add(new AccountOpenInfo("客户编号：NOT777", "客户名称：刘备", "资金存管手机号：741863548", "中国银行：767895784123456"));
+                DialogListAdapter adapter = new DialogListAdapter(testData, MainActivity.this);
+                mListAlertDialog = new AccountOpenInfoDialog(adapter);
+                mListAlertDialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        for (int i = 0; i < adapter.getDialogData().size(); i++) {
+                            adapter.getDialogData().get(i).isSelect = false;
+                        }
+                        boolean selected = adapter.getDialogData().get(position).isSelect;
+                        adapter.getDialogData().get(position).isSelect = !selected;
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                mListAlertDialog.setCallBack(new AccountOpenInfoDialog.AccountOpenInfoCallBack() {
+                    @Override
+                    public void call(int result, BaseAdapter adapter1) {
+                        if (result == 1) {
+                            for (int i = 0; i < adapter.getDialogData().size(); i++) {
+                                if (adapter.getDialogData().get(i).isSelect) {
+                                    String aaa = adapter.getDialogData().get(i).getOpenNum();
+                                    String bbb = adapter.getDialogData().get(i).getOpenName();
+                                    String ccc = adapter.getDialogData().get(i).getOpenPhone();
+                                    String ddd = adapter.getDialogData().get(i).getOpenBank();
+                                    String str = aaa + "\n" + bbb + "\n" + ccc + "\n" + ddd;
+                                    Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        } else {
+                            xitong();
+                            // Toast.makeText(MainActivity.this, maskPhoneNum("12345678910"), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }).show(MainActivity.this.getSupportFragmentManager(), "dialog");
             }
         });
 
@@ -115,33 +162,84 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //   signName();  // 画板
+    }
+
+    /**
+     * desc: 银行卡号加星号
+     */
+    private StringBuffer maskBankNum(String str) {
+        StringBuffer buffer = new StringBuffer(str);
+        int length = str.length() - 8;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            sb.append("*");
+        }
+        return buffer.replace(4, buffer.length() - 4, sb.toString());
+    }
+
+    /**
+     * desc: 手机号加星号
+     */
+    public static String maskPhoneNum(String phoneNumber) {
+
+        char[] digits = phoneNumber.toCharArray();
+        for (int i = 3; i < 7; i++) {
+            digits[i] = '*';
+        }
+        return new String(digits);
+    }
+
+    /**
+     * desc: 手写板签名
+     */
+    public void signName() {
+        SignBoardView draw_sign = findViewById(R.id.draw_sign);
+        draw_sign.start();
     }
 
     public void xitong() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialog);
-        AlertDialog dialog = builder.setTitle("存在未签约合同，请先签署\n后再下单，谢谢！").setPositiveButton("跳转签属", new DialogInterface.OnClickListener() {
+        AlertDialog dialog = builder.setTitle("系统弹窗").setMessage("定位不可用，请打开定位权限!").setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        }).setPositiveButton("跳转签属", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
             }
         }).create();
+        dialog.setCancelable(false);
         dialog.show();
         Button logOut = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
         logOut.setTextSize(18);
         logOut.setTextColor(Color.parseColor("#3090FF"));
+        Button logCancel = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        logCancel.setTextSize(18);
+        logCancel.setTextColor(Color.parseColor("#3090FF"));
         try {
-            //获取mAlert对象
+            // 获取mAlert对象
             Field mAlert = AlertDialog.class.getDeclaredField("mAlert");
             mAlert.setAccessible(true);
             Object mAlertController = mAlert.get(dialog);
 
-            //获取mTitleView并设置大小颜色
+            // 获取mTitleView并设置大小颜色
             Field mTitle = mAlertController.getClass().getDeclaredField("mTitleView");
             mTitle.setAccessible(true);
             TextView mTitleView = (TextView) mTitle.get(mAlertController);
             mTitleView.setTextSize(28);
             mTitleView.setTextColor(Color.BLACK);
+
+            // 获取mMessageView并设置大小颜色
+            Field mMessage = mAlertController.getClass().getDeclaredField("mMessageView");
+            mMessage.setAccessible(true);
+            TextView mMessageView = (TextView) mMessage.get(mAlertController);
+            mMessageView.setTextSize(23);
+            mMessageView.setTextColor(Color.BLACK);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -169,6 +267,38 @@ public class MainActivity extends AppCompatActivity {
         params.height = (int) (point.y * 0.42);
         params.width = (int) (point.x * 0.82);
         window.setAttributes(params);
+        dialog.show();
+    }
+
+    public void showEditPsw() {
+        Dialog dialog = new Dialog(this, R.style.NoticeDialog);
+        View view = View.inflate(this, R.layout.edit_psw_view, null);
+        dialog.setContentView(view);
+        EditText inputPsw = (EditText) view.findViewById(R.id.edt_maintain_cause);
+        TextView tvcancel = (TextView) view.findViewById(R.id.tv_state_cancel);
+        TextView tvconfirm = (TextView) view.findViewById(R.id.tv_state_sure);
+        tvcancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        tvconfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String edtTxt = inputPsw.getText().toString();
+                if (edtTxt.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "输入内容不能为空", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (!edtTxt.equals("uboxol")) {
+                    Toast.makeText(MainActivity.this, "输入密码错误", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                dialog.dismiss();
+            }
+        });
+        dialog.setCancelable(false);
         dialog.show();
     }
 
@@ -433,6 +563,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // 弹出选择测试正式环境的pop
+    @SuppressLint("SetTextI18n")
+    public void showEnvDialog111() {
+
+        Dialog dialog = new Dialog(this, R.style.NoticeDialog);
+        View view = View.inflate(this, R.layout.dialog_ceshi666888, null);
+        dialog.setContentView(view);
+        TextView appVersion = view.findViewById(R.id.tv_app_version);
+        appVersion.setText(getString(R.string.app_version) + "getVersion()");
+
+        RadioGroup switchEnv = view.findViewById(R.id.rg_switch_env);
+        switchEnv.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rb_formal_env:
+                        break;
+                    case R.id.rb_testing_env:
+                        break;
+                    case R.id.rb_pre_env:
+                        break;
+
+                }
+            }
+        });
+        view.findViewById(R.id.rb_formal_env); //正式
+        view.findViewById(R.id.rb_testing_env); //测试
+        view.findViewById(R.id.rb_pre_env); //预发布
+        TextView mTv_cancel = view.findViewById(R.id.tv_state_cancel);
+        TextView mTv_sure = view.findViewById(R.id.tv_state_sure);
+        mTv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        mTv_sure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+
     // 版本号比较  例如: 1.1.1和1.1.2
     public static boolean isNeedUpdate(String currentVersion, String anotherVersion) {
         String[] v1 = currentVersion.split("\\.");
@@ -453,4 +630,79 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+class DialogListAdapter extends BaseAdapter {
+
+    private List<AccountOpenInfo> testData;
+    Context myContext;
+
+    public List<AccountOpenInfo> getDialogData() {
+        return testData;
+    }
+
+    public void setDialogData(List<AccountOpenInfo> data) {
+        this.testData = data;
+        notifyDataSetChanged();
+    }
+
+    public DialogListAdapter(List<AccountOpenInfo> list, Context context) {
+        myContext = context;
+        this.testData = list;
+    }
+
+
+    @Override
+    public int getCount() {
+        return testData.size();
+    }
+
+    @Override
+    public AccountOpenInfo getItem(int position) {
+        return testData.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ChildViewHolder holder = null;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(myContext).inflate(R.layout.item_open_info, null);
+            holder = new ChildViewHolder(convertView);
+            convertView.setTag(holder);
+        } else {
+            holder = (ChildViewHolder) convertView.getTag();
+        }
+
+        final AccountOpenInfo info = testData.get(position);
+
+        holder.tvOpenNum.setText(info.getOpenNum());
+        holder.tvOpenName.setText(info.getOpenName());
+        holder.tvOpenPhone.setText(info.getOpenPhone());
+        holder.tvOpenBank.setText(info.getOpenBank());
+
+        holder.imgSelect.setImageDrawable(info.isSelect ? myContext.getDrawable(R.drawable.ico_checkbox_high) : myContext.getDrawable(R.drawable.ico_checkbox_normal));
+        return convertView;
+    }
+
+    static class ChildViewHolder extends RecyclerView.ViewHolder {
+        TextView tvOpenNum, tvOpenName, tvOpenPhone, tvOpenBank;
+        ImageView imgSelect;
+
+        public ChildViewHolder(View itemView) {
+            super(itemView);
+            tvOpenNum = itemView.findViewById(R.id.tv_open_num);
+            tvOpenName = itemView.findViewById(R.id.tv_open_name);
+            tvOpenPhone = itemView.findViewById(R.id.tv_open_phone);
+            tvOpenBank = itemView.findViewById(R.id.tv_open_bank);
+            imgSelect = itemView.findViewById(R.id.img_select);
+        }
+    }
+}
+
+
+
 

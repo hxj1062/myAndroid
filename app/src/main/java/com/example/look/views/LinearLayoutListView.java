@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.demo.R;
+import com.example.look.R;
 
 import java.util.List;
 

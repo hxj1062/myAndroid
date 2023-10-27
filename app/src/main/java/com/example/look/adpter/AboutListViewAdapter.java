@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-
-import com.example.demo.R;
+import com.example.look.R;
 import com.example.look.bean.Person;
 
 import java.util.List;

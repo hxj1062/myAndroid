@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.look.R;
 
-import com.example.demo.R;
 
 public class TitleBar extends FrameLayout {
 

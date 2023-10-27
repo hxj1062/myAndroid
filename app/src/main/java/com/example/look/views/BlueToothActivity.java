@@ -1,13 +1,13 @@
 package com.example.look.views;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
 import android.os.Bundle;
 
-import com.example.demo.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.look.R;
 
 public class BlueToothActivity extends AppCompatActivity {
 

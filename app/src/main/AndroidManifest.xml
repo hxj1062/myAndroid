@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.demo">
+    package="com.example.look">
     <!-- 获取权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -18,9 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.look.views.DataATransferActivity"
+            android:name=".views.DataATransferActivity"
             android:exported="true" />
-        <activity android:name="com.example.look.views.DataBTransferActivity" />
+        <activity android:name=".views.DataBTransferActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -33,32 +33,32 @@
         </provider>
 
         <activity
-            android:name="com.example.look.views.ViewPaperStyleActivity"
+            android:name=".views.ViewPaperStyleActivity"
             android:exported="true" />
-        <activity android:name="com.example.look.views.BlueToothActivity" />
-        <activity android:name="com.example.look.views.LoginActivity" />
-        <activity android:name="com.example.look.views.CameraTestActivity" />
-        <activity android:name="com.example.look.views.AboutListViewActivity" />
-        <activity android:name="com.example.look.views.UITreadActivity" />
-        <activity android:name="com.example.look.views.BtnClickEffectActivity" />
+        <activity android:name=".views.BlueToothActivity" />
+        <activity android:name=".views.LoginActivity" />
+        <activity android:name=".views.CameraTestActivity" />
+        <activity android:name=".views.AboutListViewActivity" />
+        <activity android:name=".views.UITreadActivity" />
+        <activity android:name=".views.BtnClickEffectActivity" />
         <activity
-            android:name="com.example.look.views.BroadCastActivity"
+            android:name=".views.BroadCastActivity"
             android:exported="true" />
-        <activity android:name="com.example.look.views.ALifeCycleActivity" />
-        <activity android:name="com.example.look.views.BLifeCycleActivity" />
+        <activity android:name=".views.ALifeCycleActivity" />
+        <activity android:name=".views.BLifeCycleActivity" />
         <activity
-            android:name="com.example.look.views.GoodsListActivity"
+            android:name=".views.GoodsListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/StartTheme">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name="com.example.look.views.SplashActivity">
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
+        <activity android:name=".views.SplashActivity"/>
         <activity
             android:name="com.example.look.MainActivity"
             android:screenOrientation="portrait"
@@ -69,6 +69,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".views.WebViewActivity" />
     </application>
 
 </manifest>

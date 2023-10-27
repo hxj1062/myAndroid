@@ -1,8 +1,10 @@
 package com.example.look.views;
 
 import android.os.Bundle;
-import com.example.demo.R;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.look.R;
 
 public class LoginActivity extends AppCompatActivity {
 

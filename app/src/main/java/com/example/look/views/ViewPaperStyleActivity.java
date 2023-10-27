@@ -7,7 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.demo.R;
+import com.example.look.R;
 import com.example.look.adpter.ViewPaperStyleAdapter;
 
 import java.util.ArrayList;

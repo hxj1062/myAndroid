@@ -3,10 +3,10 @@ package com.example.look.views;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import com.example.demo.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.look.R;
 
 
 /**

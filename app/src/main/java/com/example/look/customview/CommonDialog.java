@@ -16,7 +16,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.example.demo.R;
+import com.example.look.R;
+
 
 public class CommonDialog extends Dialog implements View.OnClickListener {
     private TextView tvTitle, tvContent;

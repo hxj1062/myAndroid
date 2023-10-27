@@ -44,6 +44,17 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
+    <style name="NoticeDialog" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--手机顶部栏样式(显示运营商,网络信号的位置)       -->
+        <item name="colorPrimaryDark">@color/transparent</item>
+        <!--整个窗口的背景，包括边框和内部-->
+        <item name="android:windowBackground">@color/transparent</item>
+        <!--窗口是否设置为半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!--背后阴影-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
     <!--通用的dialog-->
     <style name="CommonDialog111" parent="Theme.AppCompat.Light.NoActionBar">
         <!--背景颜色及和透明程度-->

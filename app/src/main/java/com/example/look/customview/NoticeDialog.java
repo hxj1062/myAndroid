@@ -18,7 +18,7 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.demo.R;
+import com.example.look.R;
 import com.example.look.utils.DimensionUtil;
 
 import java.util.Objects;

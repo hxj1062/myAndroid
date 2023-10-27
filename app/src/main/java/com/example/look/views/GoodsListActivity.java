@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.demo.R;
+import com.example.look.R;
 
 import java.util.ArrayList;
 import java.util.List;

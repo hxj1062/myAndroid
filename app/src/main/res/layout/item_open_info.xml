@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="18dp"
+    android:background="@drawable/bg_item_open_info"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp">
+
+        <TextView
+            android:id="@+id/tv_open_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333333"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:text="客户编号:666888" />
+
+        <ImageView
+            android:id="@+id/img_select"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/selector_blue"
+            android:button="@null"
+            android:checked="false" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_open_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/color_333333"
+        android:text="客户名称:666888" />
+
+    <TextView
+        android:id="@+id/tv_open_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/color_989898"
+        android:layout_marginTop="4dp"
+        android:text="资金存管手机号:666888" />
+
+    <TextView
+        android:id="@+id/tv_open_bank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/color_989898"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="招商银行:12345678910" />
+
+</LinearLayout>

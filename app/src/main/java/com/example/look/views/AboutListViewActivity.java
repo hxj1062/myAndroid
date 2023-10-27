@@ -5,8 +5,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.demo.R;
-
+import com.example.look.R;
 import com.example.look.adpter.AboutListViewAdapter;
 import com.example.look.bean.Person;
 

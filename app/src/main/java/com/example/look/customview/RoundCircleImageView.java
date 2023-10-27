@@ -26,7 +26,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.example.demo.R;
+import com.example.look.R;
 
 public class RoundCircleImageView extends AppCompatImageView {
 

@@ -9,7 +9,8 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.example.demo.R;
+import com.example.look.R;
+
 
 public class CustomRadiusImageView extends AppCompatImageView {
     private float width, height;

@@ -7,7 +7,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.demo.R;
+import com.example.look.R;
 
 /**
  *  activity生命周期测试

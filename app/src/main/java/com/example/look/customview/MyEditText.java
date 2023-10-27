@@ -8,8 +8,7 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
-
-import com.example.demo.R;
+import com.example.look.R;
 
 
 public class MyEditText extends EditText {

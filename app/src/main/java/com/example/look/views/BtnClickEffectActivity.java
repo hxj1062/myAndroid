@@ -6,7 +6,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.demo.R;
+import com.example.look.R;
+
 /**
  *@description: 按钮的点击效果
  */

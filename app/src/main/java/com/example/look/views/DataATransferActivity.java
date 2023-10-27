@@ -1,12 +1,13 @@
 package com.example.look.views;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.demo.R;
+import com.example.look.R;
 import com.example.look.bean.DataSingleton;
 import com.example.look.bean.Student;
 import com.example.look.bean.Student2;
@@ -30,11 +31,11 @@ public class DataATransferActivity extends AppCompatActivity implements View.OnC
         findViewById(R.id.btn_Singleton).setOnClickListener(this);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
 
         Intent intentA = new Intent(DataATransferActivity.this, DataBTransferActivity.class);
-
         switch (view.getId()) {
             case R.id.btn_simple:
                 testSimpleData(intentA);

@@ -13,6 +13,14 @@
         <attr name="auto_get_line" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="CircleProgressBar">
+        <attr name="c_min" format="integer" />
+        <attr name="c_max" format="integer" />
+        <attr name="c_progress" format="integer" />
+        <attr name="c_progressbarColor" format="color" />
+        <attr name="c_progressBarThickness" format="dimension" />
+    </declare-styleable>
+
 
     <declare-styleable name="CustomRadiusImageView">
         <attr name="radius" format="dimension" />

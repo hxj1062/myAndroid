@@ -6,14 +6,15 @@ public class AccountOpenInfo {
     private String openName;
     private String openPhone;
     private String openBank;
-    public boolean isSelect;
+    private String bankNum;
+    public boolean selectState;
 
-    public boolean isSelect() {
-        return isSelect;
-    }
-
-    public void setSelect(boolean select) {
-        isSelect = select;
+    public AccountOpenInfo(String openNum, String openName, String openPhone, String openBank, String bankNum) {
+        this.openNum = openNum;
+        this.openName = openName;
+        this.openPhone = openPhone;
+        this.openBank = openBank;
+        this.bankNum = bankNum;
     }
 
     public String getOpenNum() {
@@ -48,13 +49,11 @@ public class AccountOpenInfo {
         this.openBank = openBank;
     }
 
-    public AccountOpenInfo(String openNum, String openName, String openPhone, String openBank) {
-        this.openNum = openNum;
-        this.openName = openName;
-        this.openPhone = openPhone;
-        this.openBank = openBank;
+    public String getBankNum() {
+        return bankNum;
     }
 
-    public AccountOpenInfo() {
+    public void setBankNum(String bankNum) {
+        this.bankNum = bankNum;
     }
 }

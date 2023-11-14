@@ -3,7 +3,8 @@ package com.example.look.views;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
+
+import com.example.look.utils.CommonUtils;
 
 public class BroadcastReceiverDemo extends BroadcastReceiver {
 
@@ -12,7 +13,7 @@ public class BroadcastReceiverDemo extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (MY_ACTION.equals(intent.getAction())) {
-            Toast.makeText(context, intent.getStringExtra("demo"), Toast.LENGTH_SHORT).show();
+            CommonUtils.showToast(context, intent.getStringExtra("demo"));
         }
     }
 }

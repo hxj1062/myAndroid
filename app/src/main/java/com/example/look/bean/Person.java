@@ -3,9 +3,9 @@ package com.example.look.bean;
 public class Person {
 
     String name;
-    int age;
+    String age;
 
-    public Person(String name , int age){
+    public Person(String name , String age){
         this.name = name ;
         this.age = age ;
     }
@@ -18,11 +18,11 @@ public class Person {
         this.name = name;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

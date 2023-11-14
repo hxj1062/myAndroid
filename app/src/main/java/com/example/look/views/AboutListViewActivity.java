@@ -28,7 +28,7 @@ public class AboutListViewActivity extends AppCompatActivity {
     private void initView() {
 
         for (int i = 0; i < 8; i++) {
-            personList.add(new Person("张三" + i, 18 + i));
+            personList.add(new Person("张三" + i, "18" + i));
         }
 
         listViewAdapter = new AboutListViewAdapter(AboutListViewActivity.this, personList);

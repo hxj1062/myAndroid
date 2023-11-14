@@ -21,11 +21,9 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,16 +32,17 @@ import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.look.adpter.OpenInfoListAdapter;
 import com.example.look.bean.AccountOpenInfo;
 import com.example.look.customview.AccountOpenInfoDialog;
 import com.example.look.customview.CommonDialog;
+import com.example.look.customview.LinePlanDialog;
 import com.example.look.customview.NoticeDialog;
 import com.example.look.customview.SignBoardView;
+import com.example.look.utils.CommonUtils;
 import com.example.look.utils.DimensionUtil;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isTouch = true;
     private int i = 0;
     boolean flagsss = true;
-    private AccountOpenInfoDialog mListAlertDialog;
+    private AccountOpenInfoDialog openInfoDialog;
 
 
     @Override
@@ -97,47 +96,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_jump).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<AccountOpenInfo> testData = new ArrayList<>();
-                testData.add(new AccountOpenInfo("客户编号：NOT111", "客户名称：曹操", "资金存管手机号：123456789", "招商银行：189159456123456"));
-                testData.add(new AccountOpenInfo("客户编号：NOT222", "客户名称：关羽", "资金存管手机号：987456123", "邮政银行：254158789123456"));
-                testData.add(new AccountOpenInfo("客户编号：NOT333", "客户名称：郭靖", "资金存管手机号：852147963", "华夏银行：335147478123456"));
-                testData.add(new AccountOpenInfo("客户编号：NOT444", "客户名称：黄蓉", "资金存管手机号：965478912", "农业银行：435158478123456"));
-                testData.add(new AccountOpenInfo("客户编号：NOT555", "客户名称：杨过", "资金存管手机号：453698752", "建设银行：554715689123456"));
-                testData.add(new AccountOpenInfo("客户编号：NOT666", "客户名称：张飞", "资金存管手机号：458796215", "工商银行：664148848123456"));
-                testData.add(new AccountOpenInfo("客户编号：NOT777", "客户名称：刘备", "资金存管手机号：741863548", "中国银行：767895784123456"));
-                DialogListAdapter adapter = new DialogListAdapter(testData, MainActivity.this);
-                mListAlertDialog = new AccountOpenInfoDialog(adapter);
-                mListAlertDialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        for (int i = 0; i < adapter.getDialogData().size(); i++) {
-                            adapter.getDialogData().get(i).isSelect = false;
-                        }
-                        boolean selected = adapter.getDialogData().get(position).isSelect;
-                        adapter.getDialogData().get(position).isSelect = !selected;
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-                mListAlertDialog.setCallBack(new AccountOpenInfoDialog.AccountOpenInfoCallBack() {
-                    @Override
-                    public void call(int result, BaseAdapter adapter1) {
-                        if (result == 1) {
-                            for (int i = 0; i < adapter.getDialogData().size(); i++) {
-                                if (adapter.getDialogData().get(i).isSelect) {
-                                    String aaa = adapter.getDialogData().get(i).getOpenNum();
-                                    String bbb = adapter.getDialogData().get(i).getOpenName();
-                                    String ccc = adapter.getDialogData().get(i).getOpenPhone();
-                                    String ddd = adapter.getDialogData().get(i).getOpenBank();
-                                    String str = aaa + "\n" + bbb + "\n" + ccc + "\n" + ddd;
-                                    Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        } else {
-                            xitong();
-                            // Toast.makeText(MainActivity.this, maskPhoneNum("12345678910"), Toast.LENGTH_LONG).show();
-                        }
-                    }
-                }).show(MainActivity.this.getSupportFragmentManager(), "dialog");
+                showLinePlanDialog();
             }
         });
 
@@ -166,10 +125,54 @@ public class MainActivity extends AppCompatActivity {
         //   signName();  // 画板
     }
 
+
+    private void showDialog6() {
+        List<AccountOpenInfo> testData = new ArrayList<>();
+        testData.add(new AccountOpenInfo("NOT11111", "黄忠", "96547891214", "农业银行", "435158478123456"));
+        testData.add(new AccountOpenInfo("NOT22222", "孙权", "45369876552", "建设银行", "554715689123456"));
+        testData.add(new AccountOpenInfo("NOT33333", "张飞", "45879896215", "工商银行", "664148848123456"));
+        testData.add(new AccountOpenInfo("NOT44444", "刘备", "74186378548", "中国银行", "767895784123456"));
+        testData.add(new AccountOpenInfo("NOT55555", "曹操", "12345614789", "招商银行", "189159456123456"));
+        testData.add(new AccountOpenInfo("NOT66666", "关羽", "98745586123", "邮政银行", "254158789123456"));
+        testData.add(new AccountOpenInfo("NOT77777", "周瑜", "85214796963", "华夏银行", "335147478123456"));
+        OpenInfoListAdapter adapter = new OpenInfoListAdapter(testData, MainActivity.this);
+        openInfoDialog = new AccountOpenInfoDialog(adapter);
+        openInfoDialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for (int i = 0; i < adapter.getAccountData().size(); i++) {
+                    adapter.getAccountData().get(i).selectState = false;
+                }
+                boolean selected = adapter.getAccountData().get(position).selectState;
+                adapter.getAccountData().get(position).selectState = !selected;
+                adapter.notifyDataSetChanged();
+            }
+        });
+        openInfoDialog.setCallBack(new AccountOpenInfoDialog.AccountOpenInfoCallBack() {
+            @Override
+            public void call(int result) {
+                if (result == 1) {
+                    for (int i = 0; i < adapter.getAccountData().size(); i++) {
+                        if (adapter.getAccountData().get(i).selectState) {
+                            String aaa = adapter.getAccountData().get(i).getOpenNum();
+                            String bbb = adapter.getAccountData().get(i).getOpenName();
+                            String ccc = adapter.getAccountData().get(i).getOpenPhone();
+                            String ddd = adapter.getAccountData().get(i).getOpenBank();
+                            String str = aaa + "\n" + bbb + "\n" + ccc + "\n" + ddd;
+                            CommonUtils.showToast(MainActivity.this, str);
+                        }
+                    }
+                } else {
+                    CommonUtils.showToast(MainActivity.this, "取消");
+                }
+            }
+        }).show(MainActivity.this.getSupportFragmentManager(), "dialog");
+    }
+
     /**
      * desc: 银行卡号加星号
      */
-    private StringBuffer maskBankNum(String str) {
+    public static StringBuffer maskBankNum(String str) {
         StringBuffer buffer = new StringBuffer(str);
         int length = str.length() - 8;
         StringBuilder sb = new StringBuilder();
@@ -199,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         draw_sign.start();
     }
 
-    public void xitong() {
+    public void systemDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomAlertDialog);
         AlertDialog dialog = builder.setTitle("系统弹窗").setMessage("定位不可用，请打开定位权限!").setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -288,11 +291,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String edtTxt = inputPsw.getText().toString();
                 if (edtTxt.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "输入内容不能为空", Toast.LENGTH_LONG).show();
+                    CommonUtils.showToast(MainActivity.this, "输入内容不能为空");
                     return;
                 }
                 if (!edtTxt.equals("uboxol")) {
-                    Toast.makeText(MainActivity.this, "输入密码错误", Toast.LENGTH_LONG).show();
+                    CommonUtils.showToast(MainActivity.this, "输入密码错误");
                     return;
                 }
                 dialog.dismiss();
@@ -337,11 +340,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String content = ed_tools.getText().toString();
                 if (content.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "输入内容不能为空", Toast.LENGTH_LONG).show();
+                    CommonUtils.showToast(MainActivity.this, "输入内容不能为空");
                     return;
                 }
                 if (!content.equals("6666")) {
-                    Toast.makeText(MainActivity.this, "输入密码错误", Toast.LENGTH_LONG).show();
+                    CommonUtils.showToast(MainActivity.this, "输入密码错误");
                     return;
                 }
                 mPop_change.dismiss();
@@ -412,7 +415,28 @@ public class MainActivity extends AppCompatActivity {
                 .lookDetails(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, "弹窗", Toast.LENGTH_SHORT).show();
+                        CommonUtils.showToast(MainActivity.this, "弹窗");
+                    }
+                }).show();
+    }
+
+    public void showLinePlanDialog() {
+        LinePlanDialog noticeDialog = new LinePlanDialog(this, R.style.QrCodeDialog);
+        noticeDialog.changeCustom(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CommonUtils.showToast(MainActivity.this, "选用自定义");
+                    }
+                }).changeSystem(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CommonUtils.showToast(MainActivity.this, "选用系统");
+                    }
+                }).
+                goToReplenish(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CommonUtils.showToast(MainActivity.this, "返回修改补货顺序");
                     }
                 }).show();
     }
@@ -550,11 +574,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String content = mEd_maintaincause.getText().toString();
                 if (content.length() == 0) {
-                    Toast.makeText(MainActivity.this, "输入内容不能为空", Toast.LENGTH_LONG).show();
+                    CommonUtils.showToast(MainActivity.this, "输入内容不能为空");
                     return;
                 }
                 if (!content.equals("6666")) {
-                    Toast.makeText(MainActivity.this, "输入密码错误", Toast.LENGTH_LONG).show();
+                    CommonUtils.showToast(MainActivity.this, "输入密码错误");
                     return;
                 }
                 mPop_change.dismiss();
@@ -631,77 +655,6 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
-class DialogListAdapter extends BaseAdapter {
-
-    private List<AccountOpenInfo> testData;
-    Context myContext;
-
-    public List<AccountOpenInfo> getDialogData() {
-        return testData;
-    }
-
-    public void setDialogData(List<AccountOpenInfo> data) {
-        this.testData = data;
-        notifyDataSetChanged();
-    }
-
-    public DialogListAdapter(List<AccountOpenInfo> list, Context context) {
-        myContext = context;
-        this.testData = list;
-    }
-
-
-    @Override
-    public int getCount() {
-        return testData.size();
-    }
-
-    @Override
-    public AccountOpenInfo getItem(int position) {
-        return testData.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ChildViewHolder holder = null;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(myContext).inflate(R.layout.item_open_info, null);
-            holder = new ChildViewHolder(convertView);
-            convertView.setTag(holder);
-        } else {
-            holder = (ChildViewHolder) convertView.getTag();
-        }
-
-        final AccountOpenInfo info = testData.get(position);
-
-        holder.tvOpenNum.setText(info.getOpenNum());
-        holder.tvOpenName.setText(info.getOpenName());
-        holder.tvOpenPhone.setText(info.getOpenPhone());
-        holder.tvOpenBank.setText(info.getOpenBank());
-
-        holder.imgSelect.setImageDrawable(info.isSelect ? myContext.getDrawable(R.drawable.ico_checkbox_high) : myContext.getDrawable(R.drawable.ico_checkbox_normal));
-        return convertView;
-    }
-
-    static class ChildViewHolder extends RecyclerView.ViewHolder {
-        TextView tvOpenNum, tvOpenName, tvOpenPhone, tvOpenBank;
-        ImageView imgSelect;
-
-        public ChildViewHolder(View itemView) {
-            super(itemView);
-            tvOpenNum = itemView.findViewById(R.id.tv_open_num);
-            tvOpenName = itemView.findViewById(R.id.tv_open_name);
-            tvOpenPhone = itemView.findViewById(R.id.tv_open_phone);
-            tvOpenBank = itemView.findViewById(R.id.tv_open_bank);
-            imgSelect = itemView.findViewById(R.id.img_select);
-        }
-    }
-}
 
 
 

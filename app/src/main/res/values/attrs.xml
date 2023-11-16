@@ -43,4 +43,54 @@
         <attr name="bottomLeft" format="dimension" />
     </declare-styleable>
 
+
+    <!-- 用户时间滚轮 -->
+    <declare-styleable name="WheelPicker">
+        <attr name="wheel_data" format="reference" />
+        <!--当前被选中的数据项所显示的数据在数据源中的位置-->
+        <attr name="wheel_selected_item_position" format="integer" />
+        <!--数据项文本尺寸-->
+        <attr name="wheel_item_text_size" format="dimension" />
+        <!--被选中的数据项文本尺寸-->
+        <attr name="wheel_selected_item_text_size" format="dimension" />
+        <!--数据项文本颜色-->
+        <attr name="wheel_item_text_color" format="color" />
+        <!--被选中的数据项文本颜色-->
+        <attr name="wheel_selected_item_text_color" format="color" />
+        <!--滚轮选择器的每一个数据项文本是否拥有相同的宽度-->
+        <attr name="wheel_same_width" format="boolean" />
+        <!--最宽的文本-->
+        <attr name="wheel_maximum_width_text" format="string" />
+        <!--滚轮选择器中最宽或最高的文本在数据源中的位置-->
+        <attr name="wheel_maximum_width_text_position" format="integer" />
+        <!--滚轮选择器中可见的数据项数量-->
+        <attr name="wheel_visible_item_count" format="integer" />
+        <!--数据项之间间距-->
+        <attr name="wheel_item_space" format="dimension" />
+        <!--数据是否循环展示-->
+        <attr name="wheel_cyclic" format="boolean" />
+        <!--是否显示指示器-->
+        <attr name="wheel_indicator" format="boolean" />
+        <!--指示器颜色-->
+        <attr name="wheel_indicator_color" format="color" />
+        <!--指示器尺寸-->
+        <attr name="wheel_indicator_size" format="dimension" />
+        <!--是否显示幕布-->
+        <attr name="wheel_curtain" format="boolean" />
+        <!--幕布颜色-->
+        <attr name="wheel_curtain_color" format="color" />
+        <!--是否显示空气感效果-->
+        <attr name="wheel_atmospheric" format="boolean" />
+        <!--滚轮是否为卷曲效果-->
+        <attr name="wheel_curved" format="boolean" />
+        <!--数据项对齐方式-->
+        <attr name="wheel_item_align" format="enum">
+            <enum name="center" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <!--来自资源的字体路径-->
+        <attr name="wheel_font_path" format="string" />
+    </declare-styleable>
+
 </resources>

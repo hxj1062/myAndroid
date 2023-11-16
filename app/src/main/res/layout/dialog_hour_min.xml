@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_select_time"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="34dp"
+            android:textColor="@color/color_3B3B3B"
+            android:textSize="@dimen/font_18"
+            tools:text="请选择开始时间" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:visibility="visible">
+
+            <com.example.look.utils.WheelPicker
+                android:id="@+id/wp_hour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:wheel_atmospheric="true"
+                app:wheel_indicator="true"
+                app:wheel_indicator_color="@color/color_E4ECF0"
+                app:wheel_indicator_size="1dp"
+                app:wheel_item_space="@dimen/dp_50"
+                app:wheel_item_text_color="@color/color_464C5B"
+                app:wheel_item_text_size="@dimen/font_16"
+                app:wheel_selected_item_text_color="@color/color_464C5B"
+                app:wheel_selected_item_text_size="@dimen/font_18"
+                app:wheel_visible_item_count="3" />
+
+            <com.example.look.utils.WheelPicker
+                android:id="@+id/wp_minute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:wheel_atmospheric="true"
+                app:wheel_indicator="true"
+                app:wheel_indicator_color="@color/color_E4ECF0"
+                app:wheel_indicator_size="1dp"
+                app:wheel_item_space="@dimen/dp_50"
+                app:wheel_item_text_color="@color/color_4B4E55"
+                app:wheel_item_text_size="@dimen/font_16"
+                app:wheel_selected_item_text_color="@color/color_464C5B"
+                app:wheel_selected_item_text_size="@dimen/font_18"
+                app:wheel_visible_item_count="3" />
+
+            <com.example.look.utils.WheelPicker
+                android:id="@+id/wp_seconds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:wheel_atmospheric="true"
+                app:wheel_indicator="true"
+                app:wheel_indicator_color="@color/color_E4ECF0"
+                app:wheel_indicator_size="1dp"
+                app:wheel_item_space="@dimen/dp_50"
+                app:wheel_item_text_color="@color/color_4B4E55"
+                app:wheel_item_text_size="@dimen/font_16"
+                app:wheel_selected_item_text_color="@color/color_464C5B"
+                app:wheel_selected_item_text_size="@dimen/font_18"
+                app:wheel_visible_item_count="3" />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:layout_marginBottom="28dp">
+
+            <Button
+                android:id="@+id/btn_cl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="18dp"
+                android:background="@drawable/bg_cancel"
+                android:paddingLeft="40dp"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingRight="40dp"
+                android:paddingBottom="@dimen/dp_10"
+                android:text="取消"
+                android:textColor="@color/color_464C5B"
+                android:textSize="@dimen/font_16" />
+
+            <Button
+                android:id="@+id/btn_sure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/bg_confirm"
+                android:gravity="center"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:text="确定"
+                android:textColor="@color/color_FFFFFF"
+                android:textSize="@dimen/font_16" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

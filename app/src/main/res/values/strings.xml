@@ -14,4 +14,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="user_use_name">%1$s.%2$s</string>
     <string name="user333">黄河之水\n天上来</string>
+    <string name="hour">时</string>
+    <string name="minute">分</string>
+    <string name="seconds">秒</string>
 </resources>

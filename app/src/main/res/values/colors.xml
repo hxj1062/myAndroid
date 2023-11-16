@@ -54,11 +54,15 @@
     <color name="color_FF7108">#FF7108</color>
     <color name="color_D3D3D3">#D3D3D3</color>
     <color name="color_DCDCDC">#DCDCDC</color>
+    <color name="color_4B4E55">#4B4E55</color>
     <color name="color_696969">#696969</color>
+    <color name="color_E4ECF0">#E4ECF0</color>
     <color name="color_FFFF7108">#FFFF7108</color>
     <color name="color_FF0000">#FF0000</color>
     <color name="color_FFFFFF">#FFFFFF</color>
     <color name="color_35F535">#35F535</color>
+    <color name="color_464C5B">#464C5B</color>
+    <color name="color_3675FF">#3675FF</color>
     <color name="color_3090FF">#FF3090FF</color>
     <color name="color_339A9A9A">#339A9A9A</color>
     <color name="color_3C000000">#3C000000</color>

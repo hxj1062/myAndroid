@@ -19,9 +19,9 @@ public class RoutePointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.vm_item_2_layout, parent, false);
-        // return new RoutePointHolder(rootView);
-        return new EmptyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_machine_page, parent, false));
+        View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_num_vm, parent, false);
+        return new RoutePointHolder(rootView);
+        //  return new EmptyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_machine_page, parent, false));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class RoutePointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 3;
     }
 
     @Override

@@ -37,14 +37,14 @@
             android:exported="true" />
         <activity android:name=".views.BlueToothActivity" />
         <activity
-            android:name=".views.LineSearchActivity"
+            android:name=".views.ConfigureRouteActivity"
             android:theme="@style/StartTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.ConfigureRouteActivity" />
+        <activity android:name=".views.LineSearchActivity" />
         <activity android:name=".views.RoutePointListActivity" />
         <activity android:name=".views.LoginActivity" />
         <activity android:name=".views.CameraTestActivity" />

@@ -18,8 +18,30 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            allowInsecureProtocol = true
+            url "https://jitpack.io"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'https://maven.google.com'
+        }
+        flatDir {
+            dirs 'libs'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+        // 配置HMS Core SDK的Maven仓地址。
+        maven {
+            url 'https://developer.huawei.com/repo/'
+        }
+
     }
 }
+
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

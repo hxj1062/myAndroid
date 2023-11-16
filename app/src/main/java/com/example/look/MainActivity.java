@@ -420,6 +420,8 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
+
+
     public void showLinePlanDialog() {
         LinePlanDialog noticeDialog = new LinePlanDialog(this, R.style.QrCodeDialog);
         noticeDialog.changeCustom(new View.OnClickListener() {

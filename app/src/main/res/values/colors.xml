@@ -30,6 +30,7 @@
     <color name="color_00008B">#00008B</color>
     <color name="color_FF7500">#FF7500</color>
     <color name="color_0000FF">#0000FF</color>
+    <color name="color_FF3700">#FF3700</color>
     <color name="color_989898">#989898</color>
     <color name="color_333333">#333333</color>
     <color name="color_FF6600">#FF6600</color>
@@ -39,7 +40,9 @@
     <color name="color_D8D8D8">#D8D8D8</color>
     <color name="color_FFA500">#FFA500</color>
     <color name="color_232323">#232323</color>
+    <color name="color_F1D8C2">#F1D8C2</color>
     <color name="color_FF4951">#FF4951</color>
+    <color name="color_222222">#222222</color>
     <color name="color_FFFF00">#FFFF00</color>
     <color name="color_3B3B3B">#3B3B3B</color>
     <color name="color_FFFFF0E3">#FFFFF0E3</color>

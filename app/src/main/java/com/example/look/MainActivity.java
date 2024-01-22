@@ -11,6 +11,7 @@ import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -38,6 +39,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.look.adpter.OpenInfoListAdapter;
 import com.example.look.bean.AccountOpenInfo;
 import com.example.look.customview.AccountOpenInfoDialog;
+import com.example.look.customview.AppDownDialog;
 import com.example.look.customview.CommonDialog;
 import com.example.look.customview.LinePlanDialog;
 import com.example.look.customview.NoticeDialog;
@@ -96,7 +98,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_jump).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLinePlanDialog();
+//                showLinePlanDialog();
+//                showAppDownDialog();
+                showSubmitDialog();
             }
         });
 
@@ -420,6 +424,43 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
+
+    private void showAppDownDialog() {
+        AppDownDialog appDownDialog = new AppDownDialog(this, R.style.QrCodeDialog);
+        appDownDialog.show();
+    }
+
+    /**
+     * desc: 倒计时弹窗
+     */
+    public void showSubmitDialog() {
+        Dialog dialog = new Dialog(this, R.style.SubmitDialog);
+        View view = View.inflate(this, R.layout.dialog_submit, null);
+        dialog.setContentView(view);
+
+        TextView tvHandel = view.findViewById(R.id.tv_to_handle);
+        //CountDownTimer timer = new CountDownTimer(3000，1000)中，*第一个参数表示总时间，第二个参数表示间隔时间。
+        // 意思就是每隔一秒会回调一次方法onTick，然后1秒之后会回调onFinish方法。
+        CountDownTimer timer = new CountDownTimer(3000, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                tvHandel.setText("我知道了(" + millisUntilFinished / 1000 + "s)");
+            }
+
+            @Override
+            public void onFinish() {
+             //   dialog.dismiss();
+            }
+        };
+        //调用CountDownTimer对象的 start()方法开始倒计时，也不涉及到线程处理
+        timer.start();
+        tvHandel.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+        dialog.setCancelable(false);
+        dialog.show();
+    }
 
 
     public void showLinePlanDialog() {

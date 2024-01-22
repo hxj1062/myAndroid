@@ -65,7 +65,6 @@ public class LineSearchActivity extends AppCompatActivity {
                     finish();
                 }
             });
-
         }
     }
 

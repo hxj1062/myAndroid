@@ -27,6 +27,4 @@ public class DataSingleton {
         return mMap.get(key);
     }
 
-
-
 }

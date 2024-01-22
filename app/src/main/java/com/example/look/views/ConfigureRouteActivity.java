@@ -45,7 +45,7 @@ public class ConfigureRouteActivity extends AppCompatActivity {
         findViewById(R.id.tv_hfasdu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showNoticeDialog111();
+                showNewCommonDialog();
             }
         });
         findViewById(R.id.cl_starting_point).setOnClickListener(new View.OnClickListener() {
@@ -87,28 +87,22 @@ public class ConfigureRouteActivity extends AppCompatActivity {
                 showLinePlanDialog();
             }
         });
-        showEnvDialog();
+        showBottomDialog();
     }
 
-    private void showNoticeDialog111() {
+    private void showNewCommonDialog() {
         NewCommonDialog noticeDialog = new NewCommonDialog(this, R.style.QrCodeDialog, 1);
         noticeDialog.setsContent("路径规划点位已超过50个\n请减少路径规划点位")
-                .setOnTwoClickListener(new NewCommonDialog.OnTwoClickListener() {
+                .setOnOneClickListener(new NewCommonDialog.OnOneClickListener() {
                     @Override
-                    public void onLeftClick() {
-
-                        noticeDialog.dismiss();
-                    }
-
-                    @Override
-                    public void onRightClick() {
+                    public void oneBtnClick() {
                         noticeDialog.dismiss();
                     }
                 })
                 .show();
     }
 
-    private void showEnvDialog() {
+    private void showBottomDialog() {
         List<BottomListDlg.BottomData> testData = new ArrayList<>();
         testData.add(new BottomListDlg.BottomData(0, "时间最短"));
         testData.add(new BottomListDlg.BottomData(1, "距离最短"));

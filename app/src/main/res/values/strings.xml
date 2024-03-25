@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">示例APP</string>
+    <string name="app_name">Android示例</string>
     <string name="btn_jump">测试</string>
     <string name="title_activity_view_paper_style">ViewPaperStyleActivity</string>
     <!-- Strings used for fragments for navigation -->

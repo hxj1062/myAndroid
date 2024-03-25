@@ -18,9 +18,13 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -52,6 +56,9 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -74,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         screeMessage = DimensionUtil.getScreeMessage(this);
         login_relative = findViewById(R.id.login_relative666);
@@ -94,13 +102,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        findViewById(R.id.btn_jump).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                showLinePlanDialog();
 //                showAppDownDialog();
-                showSubmitDialog();
+//                showSubmitDialog();
+//                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+//                startActivity(intent);
+                //     String str = readJs("err-upload.js");
+                //   Log.d("io流读取JS文件", str);
+
+                showCommonDialog();
             }
         });
 
@@ -129,6 +142,77 @@ public class MainActivity extends AppCompatActivity {
         //   signName();  // 画板
     }
 
+    //region ***安卓菜单控件体验
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+    }
+
+    TextView tvLine;
+    boolean isChange;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_two, menu);
+        MenuItem item = menu.findItem(R.id.action_line);
+        View abc = item.getActionView();
+        tvLine = abc.findViewById(R.id.tv_line);
+        abc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isChange) {
+                    isChange = false;
+                    tvLine.setText("孙悟空");
+                } else {
+                    isChange = true;
+                    tvLine.setText("唐三藏");
+                }
+            }
+        });
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_line) {
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //endregion
+
+
+    private String readJs(String fileName) {
+        String jsStr = "";
+        try {
+            InputStream in = getResources().getAssets().open(fileName);
+            byte buff[] = new byte[1024];
+            ByteArrayOutputStream fromFile = new ByteArrayOutputStream();
+            do {
+                int numRead = in.read(buff);
+                if (numRead <= 0) {
+                    break;
+                }
+                fromFile.write(buff, 0, numRead);
+            } while (true);
+            jsStr = fromFile.toString();
+            in.close();
+            fromFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jsStr;
+    }
 
     private void showDialog6() {
         List<AccountOpenInfo> testData = new ArrayList<>();
@@ -450,7 +534,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-             //   dialog.dismiss();
+                //   dialog.dismiss();
             }
         };
         //调用CountDownTimer对象的 start()方法开始倒计时，也不涉及到线程处理
@@ -484,12 +568,29 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
+    boolean isCanClick = true;
+
     private void showCommonDialog() {
         CommonDialog commonDialog = new CommonDialog(this);
-        commonDialog.setOnItemRightListener(new CommonDialog.OnItemRightListener() {
+        commonDialog.setRightBtnValue("确定").setLeftBtnValue("取消").setOnItemRightListener(new CommonDialog.OnItemRightListener() {
             @Override
             public void onRightClick() {
-                commonDialog.dismiss();
+                if (isCanClick) {
+                    isCanClick = false;
+                    Log.d("今天妇女节", "延时两秒打印");
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            isCanClick = true;
+                        }
+                    }, 2000);
+                }
+                //  commonDialog.dismiss();
+            }
+        }).setOnItemLeftListener(new CommonDialog.OnItemLeftListener() {
+            @Override
+            public void onLeftClick() {
+
             }
         }).show();
     }
@@ -651,7 +752,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.rb_pre_env:
                         break;
-
                 }
             }
         });

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta name="viewport"
+                content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no, viewport-fit=cover" />
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+
+        <meta name="full-screen" content="true" />
+
+        <meta name="screen-orientation" content="portrait" />
+
+        <meta name="x5-fullscreen" content="true" />
+
+        <meta name="360-fullscreen" content="true" />
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>网页令牌</title>
+        <link rel="stylesheet" href="">
+    </head>
+
+    <style>
+    #app {
+        padding: 10px;
+    }
+
+    #token-value-id {
+        padding-bottom: 10px;
+        word-wrap: break-word;
+        word-break: normal;
+    }
+
+    #act-di {
+        display: flex;
+        padding: 10px 0px;
+        align-items: center;
+    }
+
+    .act-di-child {
+        flex: 1;
+        height: 44px;
+        line-height: 44px;
+        text-align: center;
+        background-color: #3090ff;
+        color: white;
+        border-radius: 4px;
+    }
+</style>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.11/clipboard.js"></script>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+    <!-- 引入样式文件 -->
+    <link rel="stylesheet" href="https://unpkg.com/vant@2.12/lib/index.css" />
+
+    <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+    <script src="https://unpkg.com/vue@2.6/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vant@2.12/lib/vant.min.js"></script>
+
+    <body>
+        <div id="app">
+            <div>网页令牌：</div>
+            <div id="token-value-id">{{token}}</div>
+            <div>过期时间：{{expire}}</div>
+            <div id="act-di">
+                <div class="act-di-child" v-on:click="refreshAction">刷新</div>
+                <div style="width: 10px;"></div>
+                <div id="copy-token-btn" data-clipboard-target="#token-value-id" class="act-di-child">复制</div>
+            </div>
+        </div>
+
+        <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                token: '--token--',
+                expire: '--:--:--'
+            }, // 在 `methods` 对象中定义方法 :data-clipboard-text="token"
+            created: function () {
+                const that = this;
+                that.clipboardInit();
+                that.tokenInit();
+            },
+            methods: {
+                tokenInit: function () {
+                    const that = this;
+                    try {
+                        that.token = window.ucloud.token();
+                        let ex = window.ucloud.expire();
+                        if (ex != undefined && ex.length != 0) {
+                            that.expire = that.timeConvert(ex);
+                        };
+                    } catch (error) {
+                        console.log("调用失败",error)
+                    }
+                },
+                refreshAction: function (event) {
+                    const that = this;
+                    try {
+                        window.uboxClient.getToken((token) => {
+                            that.token = token;
+                            let ex = window.uboxClient.expire;
+                            if (ex != undefined && ex.length != 0) {
+                                that.expire = that.timeConvert(ex);
+                            }
+                            vant.Toast('刷新成功');
+                        })
+
+                    } catch(err) {
+                        console.log("调用失败")
+                        vant.Toast('客户端调用失败'+err);
+                    }
+                },
+                clipboardInit: function () {
+                    var clipboard = new ClipboardJS('#copy-token-btn');
+                    clipboard.on('success', function (e) {
+                        // 复制成功执行的回调，可选
+                        // console.log(e);
+                        // 释放内存
+                        // clipboard.destroy();
+                        vant.Toast('复制成功');
+                    });
+                    clipboard.on('error', function (e) {
+                        // 复制失败执行的回调，可选
+                        // console.log(e);
+                        // 释放内存
+                        // clipboard.destroy();
+                        vant.Toast('复制失败');
+                    });
+                },
+                timeConvert: function (value) {
+                    // 比如需要这样的格式 yyyy-MM-dd hh:mm:ss
+                    if (String(value).length == 10) {
+                       value = parseInt(value) * 1000
+                    } else if (String(value).length == 13) {
+                       value = parseInt(value)
+                    } else {
+                       vant.Toast('时间戳长度为10位或13位='+typeof(value));
+                       return '';
+                    }
+                    let date = new Date(value);
+                    if (!value) return ''
+                    if (value !== undefined || value !== '' || value != null) {
+                        const date = new Date(value);
+                        const y = date.getFullYear();
+                        let MM = date.getMonth() + 1;
+                        MM = MM < 10 ? ('0' + MM) : MM;
+                        let d = date.getDate();
+                        d = d < 10 ? ('0' + d) : d;
+                        let h = date.getHours();
+                        h = h < 10 ? ('0' + h) : h;
+                        let m = date.getMinutes();
+                        m = m < 10 ? ('0' + m) : m;
+                        let s = date.getSeconds();
+                        s = s < 10 ? ('0' + s) : s;
+                        const time = y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s
+                        return time;
+                    }
+                }
+            }
+        })
+        Vue.use(vant.Lazyload);
+    </script>
+
+    </body>
+
+</html>

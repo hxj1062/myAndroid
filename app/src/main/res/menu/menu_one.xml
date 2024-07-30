@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/example01"
+        android:id="@+id/menu_one_01"
         android:orderInCategory="100"
         android:title="文本一"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/example02"
+        android:id="@+id/menu_one_02"
         android:orderInCategory="100"
         android:title="文本二"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/example03"
+        android:id="@+id/menu_one_03"
         android:orderInCategory="100"
         android:title="文本三"
         app:showAsAction="never" />

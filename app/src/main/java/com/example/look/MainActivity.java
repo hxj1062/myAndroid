@@ -3,6 +3,8 @@ package com.example.look;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -19,7 +21,6 @@ import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -48,6 +50,7 @@ import com.example.look.customview.CommonDialog;
 import com.example.look.customview.LinePlanDialog;
 import com.example.look.customview.NoticeDialog;
 import com.example.look.customview.SignBoardView;
+import com.example.look.customview.UrlDialog;
 import com.example.look.utils.CommonUtils;
 import com.example.look.utils.DimensionUtil;
 import com.google.zxing.BarcodeFormat;
@@ -66,7 +69,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private LinearLayout login_relative;
     private EditText mEd_maintaincause;
     private EditText ed_tools;
@@ -75,13 +77,72 @@ public class MainActivity extends AppCompatActivity {
     private int i = 0;
     boolean flagsss = true;
     private AccountOpenInfoDialog openInfoDialog;
+    TextView tvLine;
+    boolean isChange; // 值的切换
 
+
+    /**
+     * desc: 创建Toast
+     *
+     * @param content 文案
+     * @param tag     0-大约2秒 1-大约3.5秒
+     */
+    public void showToast(String content, int tag) {
+        int duration;
+        if (tag == 0) {
+            duration = Toast.LENGTH_SHORT; // 大约2秒
+        } else {
+            duration = Toast.LENGTH_LONG; // 大约3.5秒
+        }
+        Toast toast = new Toast(this);
+        TextView textView = new TextView(this);
+        textView.setText(content);
+        textView.setBackground(getResources().getDrawable(R.drawable.tosat_bg));
+        textView.setTextColor(getResources().getColor(R.color.color_FFFFFF));
+        textView.setPadding(18, 18, 18, 18);
+        toast.setView(textView);
+        toast.setDuration(duration);
+        toast.show();
+    }
+
+    private void showUrlDialog(String str) {
+        UrlDialog noticeDialog = new UrlDialog(this, str);
+        noticeDialog.setOnCopyClickListener(new UrlDialog.OnCopyClickListener() {
+            @Override
+            public void onCopyClick() {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("label", str);
+                clipboard.setPrimaryClip(clip);
+            }
+        }).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // 测试按钮
+        findViewById(R.id.btn_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                showLinePlanDialog();
+//                showAppDownDialog();
+//                showSubmitDialog();
+//                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+//                startActivity(intent);
+                //     String str = readJs("err-upload.js");
+                //   Log.d("io流读取JS文件", str);
+
+//                showCommonDialog();
+                //     signContact(MainActivity.this);
+//                Intent intent = new Intent(MainActivity.this,  EvenBus01Activity.class);
+//                startActivity(intent);
+
+                showUrlDialog("测试今天是安测试地测测试地测测试地测试地址测试地址址试地测试地址测试地址址测试地测试地址测试地址址测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址试地址测试地址址徽山东i符号囧");
+            }
+        });
 
         screeMessage = DimensionUtil.getScreeMessage(this);
         login_relative = findViewById(R.id.login_relative666);
@@ -99,21 +160,6 @@ public class MainActivity extends AppCompatActivity {
                     tv_span.setText("结算金额");
                     flagsss = true;
                 }
-            }
-        });
-
-        findViewById(R.id.btn_test).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                showLinePlanDialog();
-//                showAppDownDialog();
-//                showSubmitDialog();
-//                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
-//                startActivity(intent);
-                //     String str = readJs("err-upload.js");
-                //   Log.d("io流读取JS文件", str);
-
-                showCommonDialog();
             }
         });
 
@@ -146,45 +192,36 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-
-    }
-
-    TextView tvLine;
-    boolean isChange;
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_two, menu);
-        MenuItem item = menu.findItem(R.id.action_line);
+        MenuItem item = menu.findItem(R.id.menu_two_01);
         View abc = item.getActionView();
-        tvLine = abc.findViewById(R.id.tv_line);
-        abc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isChange) {
-                    isChange = false;
-                    tvLine.setText("孙悟空");
-                } else {
-                    isChange = true;
-                    tvLine.setText("唐三藏");
-                }
-            }
-        });
-        return true;
+//        tvLine = abc.findViewById(R.id.tv_line);
+//        abc.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isChange) {
+//                    isChange = false;
+//                    tvLine.setText("孙悟空");
+//                } else {
+//                    isChange = true;
+//                    tvLine.setText("唐三藏");
+//                }
+//            }
+//        });
+//        return super.onCreateOptionsMenu(menu);
+        if (1 == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-
-        return super.onPrepareOptionsMenu(menu);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_line) {
-
+        if (item.getItemId() == R.id.menu_two_01) {
+            CommonUtils.showToast(this, "右上角机器配置");
         }
         return super.onOptionsItemSelected(item);
     }
@@ -196,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         String jsStr = "";
         try {
             InputStream in = getResources().getAssets().open(fileName);
-            byte buff[] = new byte[1024];
+            byte[] buff = new byte[1024];
             ByteArrayOutputStream fromFile = new ByteArrayOutputStream();
             do {
                 int numRead = in.read(buff);
@@ -482,12 +519,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static void signContact(Context cont) {
         AlertDialog.Builder builder = new AlertDialog.Builder(cont, R.style.CustomAlertDialog);
-        AlertDialog dialog = builder.setTitle("存在未签约合同，请先签署\n后再下单，谢谢！").setPositiveButton("跳转签属", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        }).create();
+        AlertDialog dialog = builder
+                .setMessage("测距欧斯阿娇发嗲建瓯降低佛教阿迪斯哦分今山东副教授点击佛就阿松i地方就哦啊圣诞节偶分接收到i放假哦撒低级哦")
+                .create();
         dialog.show();
         Button logOut = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
         logOut.setTextSize(18);

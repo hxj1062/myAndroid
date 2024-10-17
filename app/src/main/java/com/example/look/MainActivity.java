@@ -49,6 +49,7 @@ import com.example.look.customview.AppDownDialog;
 import com.example.look.customview.CommonDialog;
 import com.example.look.customview.LinePlanDialog;
 import com.example.look.customview.NoticeDialog;
+import com.example.look.customview.PopupWindowDialog;
 import com.example.look.customview.SignBoardView;
 import com.example.look.customview.UrlDialog;
 import com.example.look.utils.CommonUtils;
@@ -140,7 +141,20 @@ public class MainActivity extends AppCompatActivity {
 //                Intent intent = new Intent(MainActivity.this,  EvenBus01Activity.class);
 //                startActivity(intent);
 
-                showUrlDialog("测试今天是安测试地测测试地测测试地测试地址测试地址址试地测试地址测试地址址测试地测试地址测试地址址测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址试地址测试地址址徽山东i符号囧");
+                //   showUrlDialog("https://h5.dev.uboxol.com/abreast-node-approval-dev/#/review/index?emp_no=${uid}&username=${ldPreferences.loginAccount}&emp_role=${ldPreferences.empRole}");
+
+                PopupWindowDialog.showDrawPlateDialog(MainActivity.this, findViewById(R.id.btn_test), new PopupWindowDialog.OnDrawPlateListener() {
+                    @Override
+                    public void onNextReplay() {
+                        showToast("打开弹窗2", 0);
+                    }
+
+                    @Override
+                    public void onGoodsLoss() {
+                        showToast("打开弹窗2", 0);
+                    }
+                });
+
             }
         });
 
@@ -190,12 +204,14 @@ public class MainActivity extends AppCompatActivity {
 
     //region ***安卓菜单控件体验
 
+    int listabc;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_two, menu);
         MenuItem item = menu.findItem(R.id.menu_two_01);
         View abc = item.getActionView();
+
 //        tvLine = abc.findViewById(R.id.tv_line);
 //        abc.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -209,12 +225,14 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-//        return super.onCreateOptionsMenu(menu);
-        if (1 == 1) {
-            return true;
+
+        if (listabc == 1) {
+            // 假设menu中有一个特定的项的ID是R.id.some_menu_item
+            menu.findItem(R.id.menu_two_01).setVisible(true);
         } else {
-            return false;
+            menu.findItem(R.id.menu_two_01).setVisible(false);
         }
+        return super.onCreateOptionsMenu(menu);
     }
 
 
@@ -829,6 +847,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return len1 - len2 < 0;
     }
+
 
 }
 

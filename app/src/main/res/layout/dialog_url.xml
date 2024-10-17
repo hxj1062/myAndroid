@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
+    android:layout_marginStart="6dp"
+    android:layout_marginEnd="6dp"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -17,13 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:lineSpacingExtra="2dp"
-            android:text="测试地测测试地测测试地测试地址测试地址址试地测试地址测试地址址测试地测试地址测试地址址测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址测试地测试地址测试地址址试地址测试地址址"
+            android:layout_margin="15dp"
+            android:text="The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it."
             android:textColor="@color/black" />
 
         <LinearLayout

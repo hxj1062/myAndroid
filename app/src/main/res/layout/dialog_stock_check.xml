@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linear_dialog_edit_user_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:background="@drawable/bg_white_corners"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="上报库存与系统库存存在差异，请选择差异原因"
+                android:textColor="@color/color_FF7108"
+                android:textSize="@dimen/font_14" />
+
+            <TextView
+                android:id="@+id/tv_next_replay"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="需下次复盘"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/font_16" />
+
+            <TextView
+                android:id="@+id/tv_goods_loss"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="已丢货/货损"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/font_16" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancel_report"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/dp_10"
+            android:background="@drawable/bg_white_corners"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/color_464C5B"
+            android:textSize="@dimen/font_16" />
+    </LinearLayout>
+</FrameLayout>

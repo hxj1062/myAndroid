@@ -23,11 +23,13 @@
     <color name="white">#FFFFFF</color>
     <color name="color_FFC0CB">#FFC0CB</color>
     <color name="color_707070">#707070</color>
+    <color name="color_D1D5DC">#D1D5DC</color>
     <color name="color_000000">#000000</color>
     <color name="color_F5F5F5">#F5F5F5</color>
     <color name="color_800080">#800080</color>
     <color name="color_DDDDDD">#DDDDDD</color>
     <color name="color_00008B">#00008B</color>
+    <color name="color_9AA1AE">#9AA1AE</color>
     <color name="color_FF7500">#FF7500</color>
     <color name="color_0000FF">#0000FF</color>
     <color name="color_FF3700">#FF3700</color>

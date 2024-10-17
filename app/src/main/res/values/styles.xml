@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+    <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/app_main</item>
@@ -27,8 +27,8 @@
         <item name="android:windowIsTranslucent">true</item>
         <!--背后阴影-->
         <item name="android:backgroundDimEnabled">true</item>
-<!--        &lt;!&ndash;是否浮现在activity之上&ndash;&gt;-->
-<!--        <item name="android:windowIsFloating">true</item>-->
+        <!--        &lt;!&ndash;是否浮现在activity之上&ndash;&gt;-->
+        <!--        <item name="android:windowIsFloating">true</item>-->
     </style>
 
     <!--通用的dialog-->
@@ -100,11 +100,18 @@
 
     <style name="CustomAlertDialog" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
         <item name="buttonBarButtonStyle">@style/CustomAlertDialogButton</item>
-
     </style>
 
     <style name="CustomAlertDialogButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
         <item name="textAllCaps">false</item> <!--关闭默认大写的设置 -->
         <item name="colorAccent">@color/black</item>
+    </style>
+
+    <!-- 从下往上弹出 -->
+    <style name="BottomToTopDialog">
+        <!-- 指定显示的动画 -->
+        <item name="android:windowEnterAnimation">@anim/bottom_to_top_pop_show</item>
+        <!-- 指定消失的动画 -->
+        <item name="android:windowExitAnimation">@anim/bottom_to_top_pop_hidden</item>
     </style>
 </resources>

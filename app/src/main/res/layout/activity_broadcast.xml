@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="com.example.look.MainActivity">
+    tools:context="com.example.look.views.SignBoardActivity">
 
     <Button
         android:id="@+id/btn_zhuce"

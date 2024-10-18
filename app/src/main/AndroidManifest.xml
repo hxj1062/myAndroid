@@ -15,8 +15,18 @@
         android:allowBackup="true"
         android:icon="@drawable/logo_icon"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".views.EvenBus02Activity"
             android:exported="false">
@@ -52,13 +62,7 @@
         <activity android:name=".views.BlueToothActivity" />
         <activity
             android:name=".views.ConfigureRouteActivity"
-            android:theme="@style/StartTheme">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:theme="@style/StartTheme" />
         <activity android:name=".views.LineSearchActivity" />
         <activity android:name=".views.RoutePointListActivity" />
         <activity android:name=".views.LoginActivity" />
@@ -74,27 +78,10 @@
         <activity
             android:name=".views.GoodsListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/StartTheme">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:theme="@style/StartTheme" />
         <activity android:name=".views.SplashActivity" />
-        <activity
-            android:name="com.example.look.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".views.WebViewActivity" />
+        <activity android:name=".views.SignBoardActivity" />
     </application>
 
 </manifest>

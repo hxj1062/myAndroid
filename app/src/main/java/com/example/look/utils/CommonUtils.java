@@ -20,11 +20,37 @@ import java.util.List;
 
 public class CommonUtils {
 
+
     /**
      * desc: 弹toast
      */
     public static void showToast(Context context, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * desc: 手机号加星号
+     */
+    public static String maskPhoneNum(String phoneNumber) {
+
+        char[] digits = phoneNumber.toCharArray();
+        for (int i = 3; i < 7; i++) {
+            digits[i] = '*';
+        }
+        return new String(digits);
+    }
+
+    /**
+     * desc: 银行卡号加星号
+     */
+    public static StringBuffer maskBankNum(String str) {
+        StringBuffer buffer = new StringBuffer(str);
+        int length = str.length() - 8;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            sb.append("*");
+        }
+        return buffer.replace(4, buffer.length() - 4, sb.toString());
     }
 
     /**

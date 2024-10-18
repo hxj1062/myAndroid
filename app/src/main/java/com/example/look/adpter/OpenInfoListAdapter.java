@@ -1,7 +1,7 @@
 package com.example.look.adpter;
 
-import static com.example.look.MainActivity.maskBankNum;
-import static com.example.look.MainActivity.maskPhoneNum;
+import static com.example.look.utils.CommonUtils.maskBankNum;
+import static com.example.look.utils.CommonUtils.maskPhoneNum;
 
 import android.content.Context;
 import android.view.LayoutInflater;

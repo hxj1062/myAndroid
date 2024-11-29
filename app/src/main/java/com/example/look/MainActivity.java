@@ -7,6 +7,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -43,13 +44,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.look.adpter.FranchiseUserAdapter;
 import com.example.look.adpter.OpenInfoListAdapter;
 import com.example.look.adpter.ToolAdapter;
 import com.example.look.bean.AccountOpenInfo;
+import com.example.look.bean.FranchiseBean;
 import com.example.look.bean.ToolBean;
 import com.example.look.customview.AccountOpenInfoDialog;
 import com.example.look.customview.AppDownDialog;
 import com.example.look.customview.CommonDialog;
+import com.example.look.customview.FranchiseUserDialog;
 import com.example.look.customview.LinePlanDialog;
 import com.example.look.customview.NoticeDialog;
 import com.example.look.customview.PopupWindowDialog;
@@ -57,6 +61,8 @@ import com.example.look.customview.SignBoardView;
 import com.example.look.customview.UrlDialog;
 import com.example.look.utils.CommonUtils;
 import com.example.look.utils.DimensionUtil;
+import com.example.look.views.ALifeCycleActivity;
+import com.example.look.views.EvenBus01Activity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
@@ -101,6 +107,19 @@ public class MainActivity extends AppCompatActivity {
         toolList.add(new ToolBean(1, "底部弹窗"));
         toolList.add(new ToolBean(2, "io流读Js文件"));
         toolList.add(new ToolBean(3, "H5地址弹窗"));
+        toolList.add(new ToolBean(4, "账户选择"));
+        toolList.add(new ToolBean(5, "路线对比弹窗"));
+        toolList.add(new ToolBean(6, "通用toast"));
+        toolList.add(new ToolBean(7, "弹窗倒计时"));
+        toolList.add(new ToolBean(8, "app下架"));
+        toolList.add(new ToolBean(9, "活动通知"));
+        toolList.add(new ToolBean(10, "友咖提示"));
+        toolList.add(new ToolBean(11, "转账入口验证"));
+        toolList.add(new ToolBean(12, "友客云提示"));
+        toolList.add(new ToolBean(13, "系统弹窗"));
+        toolList.add(new ToolBean(14, "activity生命周期"));
+        toolList.add(new ToolBean(15, "EvenBus示例"));
+        toolList.add(new ToolBean(16, "加盟账号"));
     }
 
     private void clickEvent() {
@@ -145,6 +164,47 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         showUrlDialog("https://h5.dev.uboxol.com/abreast-node-approval-dev/#/review/index?emp_no=${uid}&username=${ldPreferences.loginAccount}&emp_role=${ldPreferences.empRole}");
                         break;
+                    case 4:
+                        showAccountDialog();
+                        break;
+                    case 5:
+                        showLinePlanDialog();
+                        break;
+                    case 6:
+                        showToast("测试一下通用toast", 1);
+                        break;
+                    case 7:
+                        showSubmitDialog();
+                        break;
+                    case 8:
+                        showAppDownDialog();
+                        break;
+                    case 9:
+                        showNoticeDialog();
+                        break;
+                    case 10:
+                        showTipsDialog1();
+                        break;
+                    case 11:
+                        showToolsDialog();
+                        break;
+                    case 12:
+                        showTipsDialog();
+                        break;
+                    case 13:
+                        systemDialog();
+                        break;
+                    case 14:
+                        Intent lifeIntent = new Intent(MainActivity.this, ALifeCycleActivity.class);
+                        startActivity(lifeIntent);
+                        break;
+                    case 15:
+                        Intent busIntent = new Intent(MainActivity.this, EvenBus01Activity.class);
+                        startActivity(busIntent);
+                        break;
+                    case 16:
+                        showFranchiseDialog();
+                        break;
                     default:
                         CommonUtils.showToast(MainActivity.this, "事件");
                         break;
@@ -154,7 +214,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //region ***实现内容
-
 
     /**
      * desc: 按钮文字来回切换
@@ -502,7 +561,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public static void signContact(Context cont) {
         AlertDialog.Builder builder = new AlertDialog.Builder(cont, R.style.CustomAlertDialog);
-        AlertDialog dialog = builder.setMessage("测距欧斯阿娇发嗲建瓯降低佛教阿迪斯哦分今山东副教授点击佛就阿松i地方就哦啊圣诞节偶分接收到i放假哦撒低级哦").create();
+        AlertDialog dialog = builder.setMessage("测距欧斯阿娇诞节偶分接收到i放假哦撒低级哦").create();
         dialog.show();
         Button logOut = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
         logOut.setTextSize(18);
@@ -510,8 +569,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    public void showTipsDialog666() {
+    /**
+     * desc: 友咖提示
+     */
+    public void showTipsDialog1() {
         // 创建对话框对象
         Dialog dialog = new Dialog(this, R.style.CommonDialog111);
         // 设置标题
@@ -628,7 +689,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * desc: 自定义弹窗,修改大小
+     * desc: 友客云提示
      */
     public void showTipsDialog() {
         Dialog dialog = new Dialog(this, R.style.CommonDialog111);
@@ -705,7 +766,7 @@ public class MainActivity extends AppCompatActivity {
         draw_sign.start();
     }
 
-    private void showDialog6() {
+    private void showAccountDialog() {
         List<AccountOpenInfo> testData = new ArrayList<>();
         testData.add(new AccountOpenInfo("NOT11111", "黄忠", "96547891214", "农业银行", "435158478123456"));
         testData.add(new AccountOpenInfo("NOT22222", "孙权", "45369876552", "建设银行", "554715689123456"));
@@ -738,6 +799,48 @@ public class MainActivity extends AppCompatActivity {
                             String ccc = adapter.getAccountData().get(i).getOpenPhone();
                             String ddd = adapter.getAccountData().get(i).getOpenBank();
                             String str = aaa + "\n" + bbb + "\n" + ccc + "\n" + ddd;
+                            CommonUtils.showToast(MainActivity.this, str);
+                        }
+                    }
+                } else {
+                    CommonUtils.showToast(MainActivity.this, "取消");
+                }
+            }
+        }).show(MainActivity.this.getSupportFragmentManager(), "dialog");
+    }
+
+    private void showFranchiseDialog() {
+
+        List<FranchiseBean> testData = new ArrayList<>();
+        testData.add(new FranchiseBean("是共享仓0", "NJ01234", 0));
+        testData.add(new FranchiseBean("加盟客户0", "NJ56789", 1));
+        testData.add(new FranchiseBean("个体运营0", "NJ13572", 1));
+        testData.add(new FranchiseBean("个体运营2", "NJ13572", 1));
+        testData.add(new FranchiseBean("个体运营3", "NJ13572", 1));
+        testData.add(new FranchiseBean("个体运营4", "NJ13572", 1));
+        testData.add(new FranchiseBean("个体运营5", "NJ13572", 1));
+        FranchiseUserAdapter adapter = new FranchiseUserAdapter(testData, MainActivity.this);
+        FranchiseUserDialog openInfoDialog = new FranchiseUserDialog(adapter);
+        openInfoDialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for (int i = 0; i < adapter.getAccountData().size(); i++) {
+                    adapter.getAccountData().get(i).selectState = false;
+                }
+                boolean selected = adapter.getAccountData().get(position).selectState;
+                adapter.getAccountData().get(position).selectState = !selected;
+                adapter.notifyDataSetChanged();
+            }
+        });
+        openInfoDialog.setCallBack(new FranchiseUserDialog.AccountOpenInfoCallBack() {
+            @Override
+            public void call(int result) {
+                if (result == 1) {
+                    for (int i = 0; i < adapter.getAccountData().size(); i++) {
+                        if (adapter.getAccountData().get(i).selectState) {
+                            String aaa = adapter.getAccountData().get(i).name;
+                            String bbb = adapter.getAccountData().get(i).num;
+                            String str = "加盟名称" + aaa + "==加盟客编" + bbb;
                             CommonUtils.showToast(MainActivity.this, str);
                         }
                     }
@@ -787,7 +890,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return jsStr;
     }
-
 
     //endregion
 

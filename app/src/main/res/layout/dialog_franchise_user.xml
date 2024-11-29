@@ -7,24 +7,17 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:text="该身份证号已开通资金存管账户"
-        android:textColor="@color/color_232323"
-        android:textSize="@dimen/font_18" />
-
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="8dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="8dp"
-        android:text="根据银行法规要求:您需选择其中一个资金存管账户"
-        android:textColor="@color/color_FF4951"
-        android:textSize="@dimen/font_14" />
+        android:gravity="center_horizontal"
+        android:text="请选择本次需要登录的客编"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_18"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,16 +27,13 @@
         <ListView
             android:id="@+id/dialog_list_info"
             android:layout_width="match_parent"
-            android:layout_weight="1"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="8dp"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
             android:choiceMode="multipleChoice"
             android:dividerHeight="5dp"
             android:scrollbars="none"
-            tools:listitem="@layout/item_open_info"/>
+            tools:listitem="@layout/item_account" />
 
         <LinearLayout
             android:layout_width="match_parent"

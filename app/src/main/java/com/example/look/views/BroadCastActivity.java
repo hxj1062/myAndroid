@@ -55,7 +55,6 @@ public class BroadCastActivity extends AppCompatActivity implements View.OnClick
                     break;
                 default:
                     break;
-
             }
         }
     }

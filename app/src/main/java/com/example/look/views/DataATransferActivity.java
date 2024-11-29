@@ -16,7 +16,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+ /**
+  * desc: 数据传递方式
+  * <p>
+  * Created by hxj on
+  */
 public class DataATransferActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override

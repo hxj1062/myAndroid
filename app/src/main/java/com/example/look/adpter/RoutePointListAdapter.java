@@ -19,7 +19,7 @@ public class RoutePointListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.vm_item_2_layout, parent, false);
+        View rootView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vm_info, parent, false);
          return new RoutePointHolder(rootView);
 
     }

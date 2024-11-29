@@ -8,21 +8,18 @@
 
     <com.example.look.customview.TitleBar
         android:id="@+id/title_bar"
-        app:title="测试"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
+        app:title="测试" />
 
     <ListView
         android:id="@+id/test_lv"
-        app:layout_constraintTop_toBottomOf="@+id/title_bar"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="match_parent"
-        tools:listitem="@layout/item_about_list"
-        android:layout_height="wrap_content"/>
-
-
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"
+        tools:listitem="@layout/item_about_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

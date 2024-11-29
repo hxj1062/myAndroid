@@ -6,6 +6,8 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.look.MainActivity;
+
 /**
  *@explain  启动页
  */
@@ -19,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                startActivity(new Intent(SplashActivity.this, SignBoardActivity.class));
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
                 // overridePendingTransition(0, 0);
             }

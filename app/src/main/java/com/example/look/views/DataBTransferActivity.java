@@ -17,6 +17,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+ /**
+  * desc: 数据接收方
+  * <p>
+  * Created by hxj on
+  */
 public class DataBTransferActivity extends AppCompatActivity {
 
     private Intent intentB;

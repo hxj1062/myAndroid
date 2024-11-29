@@ -18,6 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
+            android:name=".TestActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
@@ -71,16 +78,17 @@
         <activity android:name=".views.UITreadActivity" />
         <activity android:name=".views.BtnClickEffectActivity" />
         <activity
-            android:name=".views.BroadCastActivity"
+            android:name=".views.BroadcastTestActivity"
             android:exported="true" />
-        <activity android:name=".views.ALifeCycleActivity" />
-        <activity android:name=".views.BLifeCycleActivity" />
+        <activity android:name=".views.Cycle01Activity" />
+        <activity android:name=".views.Cycle02Activity" />
         <activity
             android:name=".views.GoodsListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/StartTheme" />
         <activity android:name=".views.SplashActivity" />
         <activity android:name=".views.WebViewActivity" />
+        <activity android:name=".views.CountDownActivity" />
         <activity android:name=".views.SignBoardActivity" />
     </application>
 

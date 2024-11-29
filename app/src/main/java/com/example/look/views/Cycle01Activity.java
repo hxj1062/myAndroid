@@ -10,21 +10,23 @@ import com.example.look.R;
 import com.example.look.utils.MLog;
 
 /**
- * activity生命周期测试
+ * desc: activity生命周期测试
+ * <p>
+ * Created by hxj on
  */
-public class ALifeCycleActivity extends AppCompatActivity {
+public class Cycle01Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MLog.d("生命周期=A页调用onCreate方法");
-        setContentView(R.layout.activity_a_life_cycle);
+        MLog.d("生命周期=A页调用onCreate");
+        setContentView(R.layout.activity_cycle01);
 
         findViewById(R.id.btn_Ajump).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentA = new Intent(ALifeCycleActivity.this, BLifeCycleActivity.class);
-                startActivity(intentA);
+                Intent intent = new Intent(Cycle01Activity.this, Cycle02Activity.class);
+                startActivity(intent);
             }
         });
     }
@@ -32,37 +34,37 @@ public class ALifeCycleActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        MLog.d("生命周期=A页调用onStar方法");
+        MLog.d("生命周期=A页调用onStar");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MLog.d("生命周期=A页调用onResume方法");
+        MLog.d("生命周期=A页调用onResume");
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        MLog.d("生命周期=A页调用onPause方法");
+        MLog.d("生命周期=A页调用onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        MLog.d("生命周期=A页调用onStop方法");
+        MLog.d("生命周期=A页调用onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MLog.d("生命周期=A页调用onDestroy方法");
+        MLog.d("生命周期=A页调用onDestroy");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        MLog.d("生命周期=A页调用onRestart方法");
+        MLog.d("生命周期=A页调用onRestart");
     }
 }

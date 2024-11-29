@@ -8,7 +8,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- *@description: 使用字节流复制文件
+ * desc: 使用字节流复制修改文件名
+ * <p>
+ * Created by hxj on
  */
 public class ChangeFileName {
 

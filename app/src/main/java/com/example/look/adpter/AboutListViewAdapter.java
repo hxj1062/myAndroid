@@ -12,9 +12,7 @@ import com.example.look.bean.Person;
 
 import java.util.List;
 
-/**
- * @explain 自定义标题栏
- */
+
 public class AboutListViewAdapter extends BaseAdapter {
 
     private List<Person> data;

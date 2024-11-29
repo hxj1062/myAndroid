@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.look.R;
 
 
-public class BroadCastActivity extends AppCompatActivity implements View.OnClickListener {
+public class BroadcastTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String MY_ACTION = "hello world";
-    private BroadcastReceiverDemo receiverDemo;
+    private BroadcastTestReceiver receiverDemo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class BroadCastActivity extends AppCompatActivity implements View.OnClick
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(MY_ACTION);
 
-        receiverDemo = new BroadcastReceiverDemo();
+        receiverDemo = new BroadcastTestReceiver();
         registerReceiver(receiverDemo, intentFilter);
     }
 

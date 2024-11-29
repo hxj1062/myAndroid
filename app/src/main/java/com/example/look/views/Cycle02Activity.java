@@ -10,15 +10,17 @@ import com.example.look.utils.MLog;
 
 
 /**
- * activity生命周期测试
+ * desc: activity生命周期测试
+ * <p>
+ * Created by hxj on
  */
-public class BLifeCycleActivity extends AppCompatActivity {
+public class Cycle02Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MLog.d("生命周期=B页调用onCreate方法");
-        setContentView(R.layout.activity_b_life_cycle);
+        MLog.d("生命周期=B页调用onCreate");
+        setContentView(R.layout.activity_cycle02);
 
         findViewById(R.id.btn_Bjump).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,37 +33,37 @@ public class BLifeCycleActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        MLog.d("生命周期=B页调用onStart方法");
+        MLog.d("生命周期=B页调用onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        MLog.d("生命周期=B页调用onResume方法");
+        MLog.d("生命周期=B页调用onResume");
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
-        MLog.d("生命周期=B页调用onPause方法");
+        MLog.d("生命周期=B页调用onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        MLog.d("生命周期=B页调用onStop方法");
+        MLog.d("生命周期=B页调用onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MLog.d("生命周期=B页调用onDestroy方法");
+        MLog.d("生命周期=B页调用onDestroy");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        MLog.d("生命周期=B页调用onRestart方法");
+        MLog.d("生命周期=B页调用onRestart");
     }
 }

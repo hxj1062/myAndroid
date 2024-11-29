@@ -33,9 +33,9 @@ public class ViewPaperStyleActivity extends AppCompatActivity {
 
         mViews = new ArrayList<>();
         LayoutInflater inflater = getLayoutInflater();
-        mViews.add(inflater.inflate(R.layout.view_1,null,false));
-        mViews.add(inflater.inflate(R.layout.view_2,null,false));
-        mViews.add(inflater.inflate(R.layout.view_3,null,false));
+        mViews.add(inflater.inflate(R.layout.paper_view01,null,false));
+        mViews.add(inflater.inflate(R.layout.paper_view02,null,false));
+        mViews.add(inflater.inflate(R.layout.paper_view03,null,false));
         mAdapter = new ViewPaperStyleAdapter(mStrings,mViews);
         mViewPager.setAdapter(mAdapter);
 

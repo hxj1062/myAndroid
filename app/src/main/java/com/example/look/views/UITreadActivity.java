@@ -16,13 +16,12 @@ public class UITreadActivity extends AppCompatActivity implements View.OnClickLi
 
     TextView textView;
 
-
     @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            if(msg.obj!=null){
+            if (msg.obj != null) {
                 textView.setText(msg.obj.toString());
             }
 

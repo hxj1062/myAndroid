@@ -6,7 +6,7 @@ import android.content.Intent;
 
 import com.example.look.utils.CommonUtils;
 
-public class BroadcastReceiverDemo extends BroadcastReceiver {
+public class BroadcastTestReceiver extends BroadcastReceiver {
 
     public static final String MY_ACTION = "hello world";
 

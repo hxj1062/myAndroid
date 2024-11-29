@@ -8,8 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.look.R;
 import com.example.look.utils.CommonUtils;
 
+
 /**
- * @description: 按钮的点击效果
+ * desc: 按钮的点击效果
+ * <p>
+ * Created by hxj on
  */
 public class BtnClickEffectActivity extends AppCompatActivity implements View.OnClickListener {
 

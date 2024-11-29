@@ -4,32 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="当前是A页面"
+        android:textColor="@color/red"
+        android:textSize="@dimen/font_18"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_Ajump"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="@string/btn_jump"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:layout_width="@dimen/dp_80"
-        android:layout_height="@dimen/dp_80"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/button_tools_press" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dp_20"
-        android:text="A页面"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_18" />
 </LinearLayout>

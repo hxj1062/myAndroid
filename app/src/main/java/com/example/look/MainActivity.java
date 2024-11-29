@@ -57,12 +57,14 @@ import com.example.look.customview.FranchiseUserDialog;
 import com.example.look.customview.LinePlanDialog;
 import com.example.look.customview.NoticeDialog;
 import com.example.look.customview.PopupWindowDialog;
-import com.example.look.customview.SignBoardView;
 import com.example.look.customview.UrlDialog;
 import com.example.look.utils.CommonUtils;
 import com.example.look.utils.DimensionUtil;
-import com.example.look.views.ALifeCycleActivity;
+import com.example.look.views.CountDownActivity;
+import com.example.look.views.Cycle01Activity;
 import com.example.look.views.EvenBus01Activity;
+import com.example.look.views.GoodsListActivity;
+import com.example.look.views.SignBoardActivity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
@@ -120,6 +122,11 @@ public class MainActivity extends AppCompatActivity {
         toolList.add(new ToolBean(14, "activity生命周期"));
         toolList.add(new ToolBean(15, "EvenBus示例"));
         toolList.add(new ToolBean(16, "加盟账号"));
+        toolList.add(new ToolBean(17, "倒计时实现"));
+        toolList.add(new ToolBean(18, "二维码弹窗"));
+        toolList.add(new ToolBean(19, "画板"));
+        toolList.add(new ToolBean(20, "生命周期体验"));
+        toolList.add(new ToolBean(21, "GoodsList"));
     }
 
     private void clickEvent() {
@@ -195,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                         systemDialog();
                         break;
                     case 14:
-                        Intent lifeIntent = new Intent(MainActivity.this, ALifeCycleActivity.class);
+                        Intent lifeIntent = new Intent(MainActivity.this, Cycle01Activity.class);
                         startActivity(lifeIntent);
                         break;
                     case 15:
@@ -204,6 +211,22 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 16:
                         showFranchiseDialog();
+                        break;
+                    case 17:
+                        Intent countIntent = new Intent(MainActivity.this, CountDownActivity.class);
+                        startActivity(countIntent);
+                        break;
+                    case 18:
+                        showQrcodeDialog();
+                        break;
+                    case 19:
+                        startActivity(new Intent(MainActivity.this, SignBoardActivity.class));
+                        break;
+                    case 20:
+                        startActivity(new Intent(MainActivity.this, Cycle01Activity.class));
+                        break;
+                    case 21:
+                        startActivity(new Intent(MainActivity.this, GoodsListActivity.class));
                         break;
                     default:
                         CommonUtils.showToast(MainActivity.this, "事件");
@@ -658,7 +681,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showEditPsw() {
         Dialog dialog = new Dialog(this, R.style.NoticeDialog);
-        View view = View.inflate(this, R.layout.edit_psw_view, null);
+        View view = View.inflate(this, R.layout.dialog_edit_psw_view, null);
         dialog.setContentView(view);
         EditText inputPsw = (EditText) view.findViewById(R.id.edt_maintain_cause);
         TextView tvcancel = (TextView) view.findViewById(R.id.tv_state_cancel);
@@ -758,13 +781,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * desc: 手写板签名
-     */
-    public void signName() {
-        SignBoardView draw_sign = findViewById(R.id.draw_sign);
-        draw_sign.start();
-    }
 
     private void showAccountDialog() {
         List<AccountOpenInfo> testData = new ArrayList<>();

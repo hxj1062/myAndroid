@@ -49,7 +49,6 @@ import com.example.look.adpter.OpenInfoListAdapter;
 import com.example.look.adpter.ToolAdapter;
 import com.example.look.bean.AccountOpenInfo;
 import com.example.look.bean.FranchiseBean;
-import com.example.look.bean.ToolBean;
 import com.example.look.customview.AccountOpenInfoDialog;
 import com.example.look.customview.AppDownDialog;
 import com.example.look.customview.CommonDialog;
@@ -76,164 +75,166 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout login_relative;
     private DisplayMetrics screeMessage;
-    private List<ToolBean> toolList = new ArrayList<>();
     private ToolAdapter toolAdapter;
     private boolean isTouch = true;
     boolean isCanClick = true;
     private int i = 0;
     boolean txtChange = true;
+    public static final Map<Integer, String> toolsMap = Collections.unmodifiableMap(
+            new HashMap<Integer, String>() {{
+                put(0, "环境弹窗");
+                put(1, "底部弹窗");
+                put(2, "io流读Js文件");
+                put(3, "H5地址弹窗");
+                put(4, "账户选择");
+                put(5, "路线对比弹窗");
+                put(6, "通用toast");
+                put(7, "弹窗倒计时");
+                put(8, "app下架");
+                put(9, "活动通知");
+                put(10, "友咖提示");
+                put(11, "转账入口验证");
+                put(12, "友客云提示");
+                put(13, "系统弹窗");
+                put(14, "生命周期体验");
+                put(15, "EvenBus示例");
+                put(16, "加盟账号");
+                put(17, "倒计时实现");
+                put(18, "二维码弹窗");
+                put(19, "画板");
+                put(20, "列表addView");
+            }}
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initData();
         RecyclerView rvToolList = findViewById(R.id.rv_tool_list);
         login_relative = findViewById(R.id.ll_zhe);
         screeMessage = DimensionUtil.getScreeMessage(this);
-        toolAdapter = new ToolAdapter(toolList);
+        toolAdapter = new ToolAdapter(toolsMap);
         rvToolList.setLayoutManager(new GridLayoutManager(this, 5));
         rvToolList.setAdapter(toolAdapter);
         clickEvent();
     }
 
-    private void initData() {
-        toolList.add(new ToolBean(0, "环境弹窗"));
-        toolList.add(new ToolBean(1, "底部弹窗"));
-        toolList.add(new ToolBean(2, "io流读Js文件"));
-        toolList.add(new ToolBean(3, "H5地址弹窗"));
-        toolList.add(new ToolBean(4, "账户选择"));
-        toolList.add(new ToolBean(5, "路线对比弹窗"));
-        toolList.add(new ToolBean(6, "通用toast"));
-        toolList.add(new ToolBean(7, "弹窗倒计时"));
-        toolList.add(new ToolBean(8, "app下架"));
-        toolList.add(new ToolBean(9, "活动通知"));
-        toolList.add(new ToolBean(10, "友咖提示"));
-        toolList.add(new ToolBean(11, "转账入口验证"));
-        toolList.add(new ToolBean(12, "友客云提示"));
-        toolList.add(new ToolBean(13, "系统弹窗"));
-        toolList.add(new ToolBean(14, "activity生命周期"));
-        toolList.add(new ToolBean(15, "EvenBus示例"));
-        toolList.add(new ToolBean(16, "加盟账号"));
-        toolList.add(new ToolBean(17, "倒计时实现"));
-        toolList.add(new ToolBean(18, "二维码弹窗"));
-        toolList.add(new ToolBean(19, "画板"));
-        toolList.add(new ToolBean(20, "生命周期体验"));
-        toolList.add(new ToolBean(21, "GoodsList"));
+    private void showSysDlg(int tag, String content) {
+        new AlertDialog.Builder(this)
+                .setTitle(content)
+                .setPositiveButton("确定", (dialogInterface, a) -> {
+                    switch (tag) {
+                        case 0:
+                            if (isTouch) {
+                                isTouch = false;
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        i = 0;
+                                        isTouch = true;
+                                    }
+                                }, 3000);
+                            }
+                            i++;
+                            if (i >= 1) { // 点击次数
+                                i = 0;
+                                showEnvDialog();
+                            }
+                            break;
+                        case 1:
+                            PopupWindowDialog.showDrawPlateDialog(MainActivity.this, findViewById(R.id.ll_zhe), new PopupWindowDialog.OnDrawPlateListener() {
+                                @Override
+                                public void onNextReplay() {
+                                    showToast("打开弹窗2", 0);
+                                }
+
+                                @Override
+                                public void onGoodsLoss() {
+                                    showToast("打开弹窗2", 0);
+                                }
+                            });
+                            break;
+                        case 2:
+                            String str = readJs("err-upload.js");
+                            Log.d("io流读取JS文件", str);
+                            break;
+                        case 3:
+                            showUrlDialog("https://h5.dev.uboxol.com/abreast-node-approval-dev/#/review/index?emp_no=${uid}&username=${ldPreferences.loginAccount}&emp_role=${ldPreferences.empRole}");
+                            break;
+                        case 4:
+                            showAccountDialog();
+                            break;
+                        case 5:
+                            showLinePlanDialog();
+                            break;
+                        case 6:
+                            showToast("测试一下通用toast", 1);
+                            break;
+                        case 7:
+                            showSubmitDialog();
+                            break;
+                        case 8:
+                            showAppDownDialog();
+                            break;
+                        case 9:
+                            showNoticeDialog();
+                            break;
+                        case 10:
+                            showTipsDialog1();
+                            break;
+                        case 11:
+                            showToolsDialog();
+                            break;
+                        case 12:
+                            showTipsDialog();
+                            break;
+                        case 13:
+                            systemDialog();
+                            break;
+                        case 14:
+                            Intent lifeIntent = new Intent(MainActivity.this, Cycle01Activity.class);
+                            startActivity(lifeIntent);
+                            break;
+                        case 15:
+                            Intent busIntent = new Intent(MainActivity.this, EvenBus01Activity.class);
+                            startActivity(busIntent);
+                            break;
+                        case 16:
+                            showFranchiseDialog();
+                            break;
+                        case 17:
+                            Intent countIntent = new Intent(MainActivity.this, CountDownActivity.class);
+                            startActivity(countIntent);
+                            break;
+                        case 18:
+                            showQrcodeDialog();
+                            break;
+                        case 19:
+                            startActivity(new Intent(MainActivity.this, SignBoardActivity.class));
+                            break;
+                        case 20:
+                            startActivity(new Intent(MainActivity.this, GoodsListActivity.class));
+                            break;
+                        default:
+                            CommonUtils.showToast(MainActivity.this, "事件");
+                            break;
+                    }
+                })
+                .show();
     }
 
     private void clickEvent() {
-        toolAdapter.onToolClickListener = new ToolAdapter.OnToolClickListener() {
-            @Override
-            public void onToolClick(int tag) {
-                switch (tag) {
-                    case 0:
-                        if (isTouch) {
-                            isTouch = false;
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    i = 0;
-                                    isTouch = true;
-                                }
-                            }, 3000);
-                        }
-                        i++;
-                        if (i >= 5) {
-                            i = 0;
-                            showEnvDialog();
-                        }
-                        break;
-                    case 1:
-                        PopupWindowDialog.showDrawPlateDialog(MainActivity.this, findViewById(R.id.ll_zhe), new PopupWindowDialog.OnDrawPlateListener() {
-                            @Override
-                            public void onNextReplay() {
-                                showToast("打开弹窗2", 0);
-                            }
-
-                            @Override
-                            public void onGoodsLoss() {
-                                showToast("打开弹窗2", 0);
-                            }
-                        });
-                        break;
-                    case 2:
-                        String str = readJs("err-upload.js");
-                        Log.d("io流读取JS文件", str);
-                        break;
-                    case 3:
-                        showUrlDialog("https://h5.dev.uboxol.com/abreast-node-approval-dev/#/review/index?emp_no=${uid}&username=${ldPreferences.loginAccount}&emp_role=${ldPreferences.empRole}");
-                        break;
-                    case 4:
-                        showAccountDialog();
-                        break;
-                    case 5:
-                        showLinePlanDialog();
-                        break;
-                    case 6:
-                        showToast("测试一下通用toast", 1);
-                        break;
-                    case 7:
-                        showSubmitDialog();
-                        break;
-                    case 8:
-                        showAppDownDialog();
-                        break;
-                    case 9:
-                        showNoticeDialog();
-                        break;
-                    case 10:
-                        showTipsDialog1();
-                        break;
-                    case 11:
-                        showToolsDialog();
-                        break;
-                    case 12:
-                        showTipsDialog();
-                        break;
-                    case 13:
-                        systemDialog();
-                        break;
-                    case 14:
-                        Intent lifeIntent = new Intent(MainActivity.this, Cycle01Activity.class);
-                        startActivity(lifeIntent);
-                        break;
-                    case 15:
-                        Intent busIntent = new Intent(MainActivity.this, EvenBus01Activity.class);
-                        startActivity(busIntent);
-                        break;
-                    case 16:
-                        showFranchiseDialog();
-                        break;
-                    case 17:
-                        Intent countIntent = new Intent(MainActivity.this, CountDownActivity.class);
-                        startActivity(countIntent);
-                        break;
-                    case 18:
-                        showQrcodeDialog();
-                        break;
-                    case 19:
-                        startActivity(new Intent(MainActivity.this, SignBoardActivity.class));
-                        break;
-                    case 20:
-                        startActivity(new Intent(MainActivity.this, Cycle01Activity.class));
-                        break;
-                    case 21:
-                        startActivity(new Intent(MainActivity.this, GoodsListActivity.class));
-                        break;
-                    default:
-                        CommonUtils.showToast(MainActivity.this, "事件");
-                        break;
-                }
-            }
-        };
+        toolAdapter.onToolClickListener = this::showSysDlg;
     }
 
     //region ***实现内容
@@ -908,6 +909,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //endregion
-
-
 }

@@ -10,18 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.look.R;
-import com.example.look.bean.ToolBean;
 
-import java.util.List;
+import java.util.Map;
 
 public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolViewHolder> {
 
-    public List<ToolBean> toolBeans;
+    public Map<Integer, String> toolMap;
     public OnToolClickListener onToolClickListener;
 
 
-    public ToolAdapter(List<ToolBean> toolBeans) {
-        this.toolBeans = toolBeans;
+    public ToolAdapter(Map<Integer, String> toolMap) {
+        this.toolMap = toolMap;
     }
 
     @NonNull
@@ -33,20 +32,19 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ToolViewHolder holder, final int position) {
-        ToolBean bean = toolBeans.get(position);
-        holder.btContent.setText(bean.txt);
+        holder.btContent.setText(toolMap.get(position));
         if (onToolClickListener != null) {
-            holder.btContent.setOnClickListener(view -> onToolClickListener.onToolClick(bean.tag));
+            holder.btContent.setOnClickListener(view -> onToolClickListener.onToolClick(holder.getBindingAdapterPosition(), toolMap.get(holder.getBindingAdapterPosition())));
         }
     }
 
     @Override
     public int getItemCount() {
-        return toolBeans.size();
+        return toolMap.size();
     }
 
     public interface OnToolClickListener {
-        void onToolClick(int tag);
+        void onToolClick(int tag, String content);
     }
 
     public static class ToolViewHolder extends RecyclerView.ViewHolder {

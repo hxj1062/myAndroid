@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:textSize="@dimen/font_10"
-        tools:text="测试" />
+        tools:text="文本" />
 
 </RelativeLayout>

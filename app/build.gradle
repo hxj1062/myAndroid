@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+
 android {
 
     namespace 'com.example.look'
@@ -78,6 +79,12 @@ android {
         }
     }
 
+//    // 配置 Java 编译选项（可选）
+//    tasks.withType(JavaCompile).tap {
+//        configureEach {
+//            options.encoding = 'UTF-8'
+//        }
+//    }
 }
 
 dependencies {

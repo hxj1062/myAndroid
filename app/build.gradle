@@ -1,48 +1,82 @@
-plugins {
-    id 'com.android.application'
-
-}
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+
+    namespace 'com.example.look'
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
         applicationId "com.example.look"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'x86', 'armeabi-v7a', 'x86_64'
-            universalApk true
+
+    signingConfigs {
+        release {
+            storeFile rootProject.file("keystore/look.jks")
+            storePassword "123456"
+            keyAlias "look"
+            keyPassword "123456"
+        }
+        debug {
+            storeFile rootProject.file("keystore/look.jks")
+            storePassword "123456"
+            keyAlias "look"
+            keyPassword "123456"
         }
     }
 
     buildTypes {
         release {
+            minifyEnabled true
+            // 删除无用的resource
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    sourceSets {
-        main {
-            res {
-                srcDirs 'src\\main\\res', 'src\\main\\res\\menu'
-            }
+
+
+    lintOptions {
+        checkReleaseBuilds false
+        disable 'GoogleAppIndexingWarning'
+        abortOnError false
+    }
+
+
+    applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach {
+            outputFileName = "myapp-${defaultConfig.versionName}-${variant.buildType.name}.apk"
         }
     }
 
+    buildFeatures {
+        dataBinding = true
+    }
+
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 
 }
 

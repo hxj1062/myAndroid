@@ -12,10 +12,12 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -26,12 +28,14 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -52,6 +56,7 @@ import com.example.look.bean.FranchiseBean;
 import com.example.look.customview.AccountOpenInfoDialog;
 import com.example.look.customview.AppDownDialog;
 import com.example.look.customview.CommonDialog;
+import com.example.look.customview.EditGoodsDialog;
 import com.example.look.customview.FranchiseUserDialog;
 import com.example.look.customview.LinePlanDialog;
 import com.example.look.customview.NoticeDialog;
@@ -62,6 +67,7 @@ import com.example.look.utils.DimensionUtil;
 import com.example.look.views.CountDownActivity;
 import com.example.look.views.Cycle01Activity;
 import com.example.look.views.EvenBus01Activity;
+import com.example.look.views.FloatingBtnUtil;
 import com.example.look.views.GoodsListActivity;
 import com.example.look.views.SignBoardActivity;
 import com.google.zxing.BarcodeFormat;
@@ -83,6 +89,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int OVERLAY_PERMISSION_REQUEST_CODE = 1;
     private LinearLayout login_relative;
     private DisplayMetrics screeMessage;
     private ToolAdapter toolAdapter;
@@ -113,8 +120,12 @@ public class MainActivity extends AppCompatActivity {
                 put(18, "二维码弹窗");
                 put(19, "画板");
                 put(20, "列表addView");
+                put(21, "商品弹窗");
             }}
     );
+    private WindowManager windowManager;
+    private ImageButton floatingButton;
+    protected FloatingBtnUtil floatingBtnUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +138,83 @@ public class MainActivity extends AppCompatActivity {
         rvToolList.setLayoutManager(new GridLayoutManager(this, 5));
         rvToolList.setAdapter(toolAdapter);
         clickEvent();
+
+        floatingBtnUtil = new FloatingBtnUtil(this);
+        floatingBtnUtil.setOnClickListener(new FloatingBtnUtil.OnClickListener() {
+            @Override
+            public void onClick() {
+                showToast("悬浮按钮点击", 1);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkOverlayPermission();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        floatingBtnUtil.hide();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    private void checkOverlayPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                showPermissionExplanationDialog();
+            } else {
+                // 已有权限，执行悬浮窗相关操作
+                if (floatingBtnUtil != null) {
+                    floatingBtnUtil.show();
+                }
+            }
+        } else {
+            // Android 6.0 以下无需此权限
+            if (floatingBtnUtil != null) {
+                floatingBtnUtil.show();
+            }
+        }
+    }
+
+    private void showPermissionExplanationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("悬浮窗权限申请")
+                .setMessage("我们需要获取悬浮窗权限，以启用悬浮AI客服小助手功能。")
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        openOverlayPermissionSettings();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+    }
+
+    private void openOverlayPermissionSettings() {
+        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+        intent.setData(Uri.parse("package:" + getPackageName()));
+        startActivityForResult(intent, OVERLAY_PERMISSION_REQUEST_CODE);
+    }
+
+    private int dpToPx(Context context, int dp) {
+        float density;
+        density = context.getResources()
+                .getDisplayMetrics()
+                .density;
+        return Math.round((float) dp * density);
     }
 
     private void showSysDlg(int tag, String content) {
@@ -225,6 +313,9 @@ public class MainActivity extends AppCompatActivity {
                         case 20:
                             startActivity(new Intent(MainActivity.this, GoodsListActivity.class));
                             break;
+                        case 21:
+                            showGoodsDialog();
+                            break;
                         default:
                             CommonUtils.showToast(MainActivity.this, "事件");
                             break;
@@ -258,6 +349,21 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 //    }
+    private void showGoodsDialog() {
+
+        EditGoodsDialog openInfoDialog = new EditGoodsDialog();
+        openInfoDialog.setCallBack(new EditGoodsDialog.EdtGoodsInfoCallBack() {
+            @Override
+            public void call(int result) {
+                if (result == 1) {
+                    CommonUtils.showToast(MainActivity.this, "确认");
+                } else {
+                    CommonUtils.showToast(MainActivity.this, "取消");
+                }
+            }
+        }).show(MainActivity.this.getSupportFragmentManager(), "dialog");
+    }
+
 
     /**
      * desc: 版本号比较  例如: 1.1.1和1.1.2

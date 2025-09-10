@@ -69,7 +69,7 @@ public class NoticeDialog extends Dialog implements View.OnClickListener {
                     .placeholder(R.drawable.background_img)
                     .error(R.drawable.background_img)
                     .transform(cornerTransform);
-            Glide.with(context).asBitmap().load(R.mipmap.ic_banner).apply(options).into(ivNoticeBanner000);
+            Glide.with(context).asBitmap().load(R.drawable.ic_banner).apply(options).into(ivNoticeBanner000);
         }
 
         if (flag == 0) {

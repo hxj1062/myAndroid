@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="-10dp"
-                android:src="@drawable/icon_vs" />
+                android:src="@drawable/ic_vs" />
 
             <TextView
                 android:layout_width="0dp"

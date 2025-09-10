@@ -64,7 +64,7 @@ public class FranchiseUserAdapter extends BaseAdapter {
         holder.tvOpenName.setText(info.name);
         String str = info.flag == 0 ? "(主)" : "(子)";
         holder.tvFlag.setText(str);
-        holder.imgSelect.setImageDrawable(info.selectState ? myContext.getDrawable(R.drawable.ico_checkbox_high) : myContext.getDrawable(R.drawable.ico_checkbox_normal));
+        holder.imgSelect.setImageDrawable(info.selectState ? myContext.getDrawable(R.drawable.ic_checkbox_high) : myContext.getDrawable(R.drawable.ic_checkbox_normal));
         return convertView;
     }
 

@@ -41,9 +41,7 @@ import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,6 +50,7 @@ import com.example.look.adpter.OpenInfoListAdapter;
 import com.example.look.adpter.ToolAdapter;
 import com.example.look.bean.AccountOpenInfo;
 import com.example.look.bean.FranchiseBean;
+import com.example.look.blue.BluetoothTaskActivity;
 import com.example.look.customview.AccountOpenInfoDialog;
 import com.example.look.customview.AppDownDialog;
 import com.example.look.customview.CommonDialog;
@@ -62,9 +61,7 @@ import com.example.look.customview.NoticeDialog;
 import com.example.look.customview.PopupWindowDialog;
 import com.example.look.customview.UrlDialog;
 import com.example.look.scan.ScanCodeActivity;
-import com.example.look.utils.CommonUtils;
 import com.example.look.utils.DimensionUtil;
-import com.example.look.views.BlueToothActivity;
 import com.example.look.views.CountDownActivity;
 import com.example.look.views.Cycle01ActivityMy;
 import com.example.look.views.EvenBus01ActivityMy;
@@ -262,7 +259,7 @@ public class MainActivity extends MyBaseActivity {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
                 break;
             case 24:
-                startActivity(new Intent(MainActivity.this, BlueToothActivity.class));
+                startActivity(new Intent(MainActivity.this, BluetoothTaskActivity.class));
                 break;
             default:
                 showToast("事件", 1);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/menu_three_01"
-        android:icon="@drawable/ico_new_home"
+        android:icon="@drawable/ic_new_home"
         android:title="文字图片"
         app:showAsAction="always|withText" />
 

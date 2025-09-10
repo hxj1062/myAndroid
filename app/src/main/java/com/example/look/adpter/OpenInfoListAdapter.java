@@ -67,7 +67,7 @@ public class OpenInfoListAdapter extends BaseAdapter {
         holder.tvOpenName.setText("客户名称：" + info.getOpenName());
         holder.tvOpenPhone.setText("资金存管手机号：" + maskPhoneNum(info.getOpenPhone()));
         holder.tvOpenBank.setText(info.getOpenBank() + "：" + maskBankNum(info.getBankNum()));
-        holder.imgSelect.setImageDrawable(info.selectState ? myContext.getDrawable(R.drawable.ico_checkbox_high) : myContext.getDrawable(R.drawable.ico_checkbox_normal));
+        holder.imgSelect.setImageDrawable(info.selectState ? myContext.getDrawable(R.drawable.ic_checkbox_high) : myContext.getDrawable(R.drawable.ic_checkbox_normal));
         return convertView;
     }
 

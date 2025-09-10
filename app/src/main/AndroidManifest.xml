@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.look">
 
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -40,7 +42,7 @@
         <activity android:name=".views.DataBTransferActivity" />
         <activity android:name=".views.ViewPaperStyleActivity" />
         <activity android:name=".views.SettingActivity" />
-        <activity android:name=".views.BlueToothActivity" />
+        <activity android:name=".blue.BluetoothTaskActivity" />
         <activity android:name=".views.ConfigureRouteActivity" />
         <activity android:name=".views.LineSearchActivity" />
         <activity android:name=".views.RoutePointListActivity" />

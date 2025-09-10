@@ -43,7 +43,7 @@ public class BottomListDlg {
 
 
     private View createContentView(Context context, List<BottomData> datas) {
-        bottomContentView = LayoutInflater.from(context).inflate(R.layout.dlg_list_layout, null);
+        bottomContentView = LayoutInflater.from(context).inflate(R.layout.dialog_list_layout, null);
 
         rvBottom = bottomContentView.findViewById(R.id.rv_bottom_list);
         rvBottom.setLayoutManager(new LinearLayoutManager(context));

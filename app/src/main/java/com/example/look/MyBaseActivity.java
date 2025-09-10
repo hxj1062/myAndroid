@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.look.blue.BtPsUtil;
 import com.google.android.material.snackbar.Snackbar;
 
 /**
@@ -20,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
  */
 public class MyBaseActivity extends AppCompatActivity {
 
+    private BtPsUtil.BtPsCallBack callBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +46,10 @@ public class MyBaseActivity extends AppCompatActivity {
         super.onStop();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -87,6 +93,26 @@ public class MyBaseActivity extends AppCompatActivity {
         toast.show();
     }
 
+
+    protected void requestEscortPermission(BtPsUtil.BtPsCallBack callBack, String... permission) {
+        this.callBack = callBack;
+        if (lacksPermissions(permission)) {
+            BtPsUtil.requestPermissions(this, BtPsUtil.PERMISSION_REQ, permission);
+        } else {
+            callBack.allowProcess("0");  //已经有权限了，不需要在弹出询问用户是否请求的对话框
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == BtPsUtil.PERMISSION_REQ && hasAllPermissionsGranted(grantResults)) {
+            if (callBack != null) callBack.allowProcess(permissions[0]);
+        } else {
+            if (callBack != null) callBack.refuseProcess(permissions[0]);
+            BtPsUtil.showMissingPermissionDialog(this);
+        }
+    }
 
     // 含有全部的权限
     private boolean hasAllPermissionsGranted(@NonNull int[] grantResults) {

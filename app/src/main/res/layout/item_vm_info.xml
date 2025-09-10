@@ -55,7 +55,7 @@
                     android:layout_height="14dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="2dp"
-                    android:background="@drawable/ico_new_home"
+                    android:background="@drawable/ic_new_home"
                     android:visibility="gone"
                     tools:visibility="visible" />
 
@@ -105,7 +105,7 @@
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
                                 android:layout_marginRight="2dp"
-                                android:background="@drawable/icon_machina5" />
+                                android:background="@drawable/ic_machina5" />
 
 
                             <TextView
@@ -137,7 +137,7 @@
                                 android:layout_height="15dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="5dp"
-                                android:background="@drawable/daily_stock"
+                                android:background="@drawable/ic_daily_stock"
                                 android:visibility="gone" />
 
 
@@ -147,7 +147,7 @@
                                 android:layout_height="15dp"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="5dp"
-                                android:background="@drawable/ico_new_home"
+                                android:background="@drawable/ic_new_home"
                                 android:visibility="gone"
                                 tools:visibility="visible" />
                         </LinearLayout>
@@ -165,7 +165,7 @@
                                 android:layout_gravity="top"
                                 android:layout_marginTop="4dp"
                                 android:layout_marginRight="2dp"
-                                android:background="@drawable/icon_lacation5" />
+                                android:background="@drawable/ic_lacation5" />
 
                             <TextView
                                 android:id="@+id/daily_child_item1_address"
@@ -282,7 +282,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:duplicateParentState="true"
-                    android:src="@drawable/vm_checked"
+                    android:src="@drawable/ic_vm_checked"
                     android:visibility="gone"
                     tools:visibility="visible" />
             </RelativeLayout>

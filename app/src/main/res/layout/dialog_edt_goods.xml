@@ -20,7 +20,7 @@
             android:layout_height="60dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="14dp"
-            android:src="@drawable/example_water"
+            android:src="@drawable/img_water"
             tools:background="@color/color_FF0000" />
 
         <androidx.appcompat.widget.LinearLayoutCompat

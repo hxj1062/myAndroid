@@ -37,7 +37,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_marginLeft="8dp"
-            android:background="@drawable/icon_search_gray"
+            android:background="@drawable/ic_search_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/edt_FaultSearch"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginRight="9dp"
-            android:background="@drawable/search_del_gray"
+            android:background="@drawable/ic_del_gray"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="@id/edt_FaultSearch"

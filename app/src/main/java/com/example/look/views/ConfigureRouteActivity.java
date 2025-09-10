@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.adpter.RoutePointAdapter;
 import com.example.look.customview.BottomListDlg;
@@ -22,7 +23,7 @@ import com.example.look.utils.CommonUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConfigureRouteActivity extends AppCompatActivity {
+public class ConfigureRouteActivity extends MyBaseActivity {
 
     RecyclerView recyclerView;
     ConstraintLayout lineLike;
@@ -127,12 +128,12 @@ public class ConfigureRouteActivity extends AppCompatActivity {
         noticeDialog.changeCustom(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        CommonUtils.showToast(ConfigureRouteActivity.this, "选用自定义");
+                        showToast("选用自定义", 1);
                     }
                 }).changeSystem(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        CommonUtils.showToast(ConfigureRouteActivity.this, "选用系统");
+                        showToast("选用系统", 1);
                     }
                 }).
                 goToReplenish(new View.OnClickListener() {

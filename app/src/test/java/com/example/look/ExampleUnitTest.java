@@ -49,7 +49,7 @@ public class ExampleUnitTest {
 //                person.setNum("利害");
 //            }
 //        }
-        System.out.print("Java测试" + personList.toString());
+        System.out.print("Java测试代码" + personList.toString());
     }
 
     // 冒泡排序
@@ -63,7 +63,7 @@ public class ExampleUnitTest {
                 }
             }
         }
-        System.out.println(Arrays.toString(arr));
+        System.out.println("冒泡排序"+Arrays.toString(arr));
     }
 
     // 字节流demo: 使用字节流复制一张图片  流的开闭原则: 先开后关,后开先关

@@ -3,8 +3,7 @@ package com.example.look.views;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.utils.CommonUtils;
 
@@ -14,12 +13,13 @@ import com.example.look.utils.CommonUtils;
  * <p>
  * Created by hxj on
  */
-public class BtnClickEffectActivity extends AppCompatActivity implements View.OnClickListener {
+public class BtnClickEffectActivity extends MyBaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_btn_click_effect);
+        buildActionBar();
         initView();
     }
 
@@ -35,15 +35,15 @@ public class BtnClickEffectActivity extends AppCompatActivity implements View.On
         switch (view.getId()) {
             // style="@style/Widget.AppCompat.Button"
             case R.id.btn_testA:
-                CommonUtils.showToast(BtnClickEffectActivity.this, "设置了阴影效果style");
+                showToast("设置了阴影效果style", 1);
                 break;
             // style="@style/Widget.AppCompat.Button"
             // android:foreground="?android:attr/selectableItemBackground"
             case R.id.btn_testB:
-                CommonUtils.showToast(BtnClickEffectActivity.this, "设置阴影效果style+波纹效果forground");
+                showToast("设置阴影效果style+波纹效果forground", 1);
                 break;
             case R.id.btn_testC:
-                CommonUtils.showToast(BtnClickEffectActivity.this, "设置阴影效果style+波纹效果forground+shape");
+                showToast("设置阴影效果style+波纹效果forground+shape", 1);
                 break;
             default:
                 break;

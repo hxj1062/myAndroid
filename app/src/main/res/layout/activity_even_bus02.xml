@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".views.EvenBus01Activity">
+    tools:context=".views.EvenBus01ActivityMy">
 
     <LinearLayout
         android:layout_width="match_parent"

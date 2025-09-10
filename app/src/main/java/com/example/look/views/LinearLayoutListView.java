@@ -16,10 +16,10 @@ public class LinearLayoutListView {
 
     private LinearLayout listLayout;
     private Context context;
-    List<GoodsListActivity.TestModel.TestChild> goodsInfo;
+    List<GoodsListActivityMy.TestModel.TestChild> goodsInfo;
 
 
-    public LinearLayoutListView(LinearLayout listLayout, List<GoodsListActivity.TestModel.TestChild> data) {
+    public LinearLayoutListView(LinearLayout listLayout, List<GoodsListActivityMy.TestModel.TestChild> data) {
         this.listLayout = listLayout;
         this.context = listLayout.getContext();
         this.goodsInfo = data;

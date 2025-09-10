@@ -22,13 +22,6 @@ public class CommonUtils {
 
 
     /**
-     * desc: 弹toast
-     */
-    public static void showToast(Context context, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    /**
      * desc: 手机号加星号
      */
     public static String maskPhoneNum(String phoneNumber) {

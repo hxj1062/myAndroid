@@ -11,17 +11,17 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 
 import java.io.File;
 
 /**
- *@description: 拍照
+ * @description: 拍照
  */
-public class CameraTestActivity extends AppCompatActivity implements View.OnClickListener {
+public class CameraTestActivity extends MyBaseActivity implements View.OnClickListener {
 
 
     private ImageView takePicture;
@@ -34,10 +34,11 @@ public class CameraTestActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_test);
+        buildActionBar();
 //        normalFile = new File(Environment.getExternalStorageDirectory() + "/photo", PHOTO_FILE_NAME);
-       // File directory = new File(Environment.getExternalStorageDirectory() + "/photo");
-      //  directory.mkdirs();
-        normalFile = new File(Environment.getExternalStorageDirectory()+"/Pictures",PHOTO_FILE_NAME);
+        // File directory = new File(Environment.getExternalStorageDirectory() + "/photo");
+        //  directory.mkdirs();
+        normalFile = new File(Environment.getExternalStorageDirectory() + "/Pictures", PHOTO_FILE_NAME);
 //        try {
 //            normalFile = File.createTempFile(
 //                    PHOTO_FILE_NAME,  /* prefix */

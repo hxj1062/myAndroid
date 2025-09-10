@@ -28,7 +28,6 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -62,13 +61,16 @@ import com.example.look.customview.LinePlanDialog;
 import com.example.look.customview.NoticeDialog;
 import com.example.look.customview.PopupWindowDialog;
 import com.example.look.customview.UrlDialog;
+import com.example.look.scan.ScanCodeActivity;
 import com.example.look.utils.CommonUtils;
 import com.example.look.utils.DimensionUtil;
+import com.example.look.views.BlueToothActivity;
 import com.example.look.views.CountDownActivity;
-import com.example.look.views.Cycle01Activity;
-import com.example.look.views.EvenBus01Activity;
+import com.example.look.views.Cycle01ActivityMy;
+import com.example.look.views.EvenBus01ActivityMy;
 import com.example.look.views.FloatingBtnUtil;
-import com.example.look.views.GoodsListActivity;
+import com.example.look.views.GoodsListActivityMy;
+import com.example.look.views.SettingActivity;
 import com.example.look.views.SignBoardActivity;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -87,7 +89,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MyBaseActivity {
 
     private static final int OVERLAY_PERMISSION_REQUEST_CODE = 1;
     private LinearLayout login_relative;
@@ -97,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
     boolean isCanClick = true;
     private int i = 0;
     boolean txtChange = true;
+    private WindowManager windowManager;
+    private ImageButton floatingButton;
+    protected FloatingBtnUtil floatingBtnUtil;
     public static final Map<Integer, String> toolsMap = Collections.unmodifiableMap(
             new HashMap<Integer, String>() {{
                 put(0, "环境弹窗");
@@ -121,11 +126,12 @@ public class MainActivity extends AppCompatActivity {
                 put(19, "画板");
                 put(20, "列表addView");
                 put(21, "商品弹窗");
+                put(22, "扫码测试");
+                put(23, "文案显示");
+                put(24, "蓝牙示例");
             }}
     );
-    private WindowManager windowManager;
-    private ImageButton floatingButton;
-    protected FloatingBtnUtil floatingBtnUtil;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +143,12 @@ public class MainActivity extends AppCompatActivity {
         toolAdapter = new ToolAdapter(toolsMap);
         rvToolList.setLayoutManager(new GridLayoutManager(this, 5));
         rvToolList.setAdapter(toolAdapter);
-        clickEvent();
+        toolAdapter.onToolClickListener = new ToolAdapter.OnToolClickListener() {
+            @Override
+            public void onToolClick(int tag) {
+                showEvent(tag);
+            }
+        };
 
         floatingBtnUtil = new FloatingBtnUtil(this);
         floatingBtnUtil.setOnClickListener(new FloatingBtnUtil.OnClickListener() {
@@ -147,6 +158,118 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void showEvent(int tag) {
+        switch (tag) {
+            case 0:
+                if (isTouch) {
+                    isTouch = false;
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            i = 0;
+                            isTouch = true;
+                        }
+                    }, 3000);
+                }
+                i++;
+                if (i >= 1) { // 点击次数
+                    i = 0;
+                    showEnvDialog();
+                }
+                break;
+            case 1:
+                PopupWindowDialog.showDrawPlateDialog(MainActivity.this, findViewById(R.id.ll_zhe), new PopupWindowDialog.OnDrawPlateListener() {
+                    @Override
+                    public void onNextReplay() {
+                        showToast("打开弹窗2", 0);
+                    }
+
+                    @Override
+                    public void onGoodsLoss() {
+                        showToast("打开弹窗2", 0);
+                    }
+                });
+                break;
+            case 2:
+                String str = readJs("err-upload.js");
+                Log.d("io流读取JS文件", str);
+                break;
+            case 3:
+                showUrlDialog("https://h5.dev.uboxol.com/abreast-node-approval-dev/#/review/index?emp_no=${uid}&username=${ldPreferences.loginAccount}&emp_role=${ldPreferences.empRole}");
+                break;
+            case 4:
+                showAccountDialog();
+                break;
+            case 5:
+                showLinePlanDialog();
+                break;
+            case 6:
+                showToast("测试一下通用toast", 1);
+                break;
+            case 7:
+                showSubmitDialog();
+                break;
+            case 8:
+                showAppDownDialog();
+                break;
+            case 9:
+                showNoticeDialog();
+                break;
+            case 10:
+                showTipsDialog1();
+                break;
+            case 11:
+                showToolsDialog();
+                break;
+            case 12:
+                showTipsDialog();
+                break;
+            case 13:
+                systemDialog();
+                break;
+            case 14:
+                Intent lifeIntent = new Intent(MainActivity.this, Cycle01ActivityMy.class);
+                startActivity(lifeIntent);
+                break;
+            case 15:
+                Intent busIntent = new Intent(MainActivity.this, EvenBus01ActivityMy.class);
+                startActivity(busIntent);
+                break;
+            case 16:
+                showFranchiseDialog();
+                break;
+            case 17:
+                Intent countIntent = new Intent(MainActivity.this, CountDownActivity.class);
+                startActivity(countIntent);
+                break;
+            case 18:
+                showQrcodeDialog();
+                break;
+            case 19:
+                startActivity(new Intent(MainActivity.this, SignBoardActivity.class));
+                break;
+            case 20:
+                startActivity(new Intent(MainActivity.this, GoodsListActivityMy.class));
+                break;
+            case 21:
+                showGoodsDialog();
+                break;
+            case 22:
+                startActivity(new Intent(MainActivity.this, ScanCodeActivity.class));
+                break;
+            case 23:
+                startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                break;
+            case 24:
+                startActivity(new Intent(MainActivity.this, BlueToothActivity.class));
+                break;
+            default:
+                showToast("事件", 1);
+                break;
+        }
+    }
+
 
     @Override
     protected void onResume() {
@@ -217,116 +340,6 @@ public class MainActivity extends AppCompatActivity {
         return Math.round((float) dp * density);
     }
 
-    private void showSysDlg(int tag, String content) {
-        new AlertDialog.Builder(this)
-                .setTitle(content)
-                .setPositiveButton("确定", (dialogInterface, a) -> {
-                    switch (tag) {
-                        case 0:
-                            if (isTouch) {
-                                isTouch = false;
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        i = 0;
-                                        isTouch = true;
-                                    }
-                                }, 3000);
-                            }
-                            i++;
-                            if (i >= 1) { // 点击次数
-                                i = 0;
-                                showEnvDialog();
-                            }
-                            break;
-                        case 1:
-                            PopupWindowDialog.showDrawPlateDialog(MainActivity.this, findViewById(R.id.ll_zhe), new PopupWindowDialog.OnDrawPlateListener() {
-                                @Override
-                                public void onNextReplay() {
-                                    showToast("打开弹窗2", 0);
-                                }
-
-                                @Override
-                                public void onGoodsLoss() {
-                                    showToast("打开弹窗2", 0);
-                                }
-                            });
-                            break;
-                        case 2:
-                            String str = readJs("err-upload.js");
-                            Log.d("io流读取JS文件", str);
-                            break;
-                        case 3:
-                            showUrlDialog("https://h5.dev.uboxol.com/abreast-node-approval-dev/#/review/index?emp_no=${uid}&username=${ldPreferences.loginAccount}&emp_role=${ldPreferences.empRole}");
-                            break;
-                        case 4:
-                            showAccountDialog();
-                            break;
-                        case 5:
-                            showLinePlanDialog();
-                            break;
-                        case 6:
-                            showToast("测试一下通用toast", 1);
-                            break;
-                        case 7:
-                            showSubmitDialog();
-                            break;
-                        case 8:
-                            showAppDownDialog();
-                            break;
-                        case 9:
-                            showNoticeDialog();
-                            break;
-                        case 10:
-                            showTipsDialog1();
-                            break;
-                        case 11:
-                            showToolsDialog();
-                            break;
-                        case 12:
-                            showTipsDialog();
-                            break;
-                        case 13:
-                            systemDialog();
-                            break;
-                        case 14:
-                            Intent lifeIntent = new Intent(MainActivity.this, Cycle01Activity.class);
-                            startActivity(lifeIntent);
-                            break;
-                        case 15:
-                            Intent busIntent = new Intent(MainActivity.this, EvenBus01Activity.class);
-                            startActivity(busIntent);
-                            break;
-                        case 16:
-                            showFranchiseDialog();
-                            break;
-                        case 17:
-                            Intent countIntent = new Intent(MainActivity.this, CountDownActivity.class);
-                            startActivity(countIntent);
-                            break;
-                        case 18:
-                            showQrcodeDialog();
-                            break;
-                        case 19:
-                            startActivity(new Intent(MainActivity.this, SignBoardActivity.class));
-                            break;
-                        case 20:
-                            startActivity(new Intent(MainActivity.this, GoodsListActivity.class));
-                            break;
-                        case 21:
-                            showGoodsDialog();
-                            break;
-                        default:
-                            CommonUtils.showToast(MainActivity.this, "事件");
-                            break;
-                    }
-                })
-                .show();
-    }
-
-    private void clickEvent() {
-        toolAdapter.onToolClickListener = this::showSysDlg;
-    }
 
     //region ***实现内容
 
@@ -356,9 +369,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void call(int result) {
                 if (result == 1) {
-                    CommonUtils.showToast(MainActivity.this, "确认");
+                    showToast("确认", 1);
                 } else {
-                    CommonUtils.showToast(MainActivity.this, "取消");
+                    showToast("取消", 1);
                 }
             }
         }).show(MainActivity.this.getSupportFragmentManager(), "dialog");
@@ -466,11 +479,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String content = mEd_maintaincause.getText().toString();
                 if (content.length() == 0) {
-                    CommonUtils.showToast(MainActivity.this, "输入内容不能为空");
+                    showToast("输入内容不能为空", 1);
                     return;
                 }
                 if (!content.equals("6666")) {
-                    CommonUtils.showToast(MainActivity.this, "输入密码错误");
+                    showToast("输入密码错误", 1);
                     return;
                 }
                 mPop_change.dismiss();
@@ -478,29 +491,29 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * desc: 创建Toast
-     *
-     * @param content 文案
-     * @param tag     0-大约2秒 1-大约3.5秒
-     */
-    public void showToast(String content, int tag) {
-        int duration;
-        if (tag == 0) {
-            duration = Toast.LENGTH_SHORT; // 大约2秒
-        } else {
-            duration = Toast.LENGTH_LONG; // 大约3.5秒
-        }
-        Toast toast = new Toast(this);
-        TextView textView = new TextView(this);
-        textView.setText(content);
-        textView.setBackground(getResources().getDrawable(R.drawable.tosat_bg));
-        textView.setTextColor(getResources().getColor(R.color.color_FFFFFF));
-        textView.setPadding(18, 18, 18, 18);
-        toast.setView(textView);
-        toast.setDuration(duration);
-        toast.show();
-    }
+//    /**
+//     * desc: 创建Toast
+//     *
+//     * @param content 文案
+//     * @param tag     0-大约2秒 1-大约3.5秒
+//     */
+//    public void showToast(String content, int tag) {
+//        int duration;
+//        if (tag == 0) {
+//            duration = Toast.LENGTH_SHORT; // 大约2秒
+//        } else {
+//            duration = Toast.LENGTH_LONG; // 大约3.5秒
+//        }
+//        Toast toast = new Toast(this);
+//        TextView textView = new TextView(this);
+//        textView.setText(content);
+//        textView.setBackground(getResources().getDrawable(R.drawable.tosat_bg));
+//        textView.setTextColor(getResources().getColor(R.color.color_FFFFFF));
+//        textView.setPadding(18, 18, 18, 18);
+//        toast.setView(textView);
+//        toast.setDuration(duration);
+//        toast.show();
+//    }
 
     /**
      * desc: 二维码弹窗
@@ -618,17 +631,17 @@ public class MainActivity extends AppCompatActivity {
         noticeDialog.changeCustom(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonUtils.showToast(MainActivity.this, "选用自定义");
+                showToast("选用自定义", 1);
             }
         }).changeSystem(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonUtils.showToast(MainActivity.this, "选用系统");
+                showToast("选用系统", 1);
             }
         }).goToReplenish(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonUtils.showToast(MainActivity.this, "返回修改补货顺序");
+                showToast("返回修改补货顺序", 1);
             }
         }).show();
     }
@@ -681,7 +694,7 @@ public class MainActivity extends AppCompatActivity {
         noticeDialog.setsTitle("测试测试12").setsImg("").setsContent("夏天的脚步已经临近“快乐水”。").lookDetails(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CommonUtils.showToast(MainActivity.this, "弹窗");
+                showToast("弹窗", 1);
             }
         }).show();
     }
@@ -774,11 +787,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String content = ed_tools.getText().toString();
                 if (content.isEmpty()) {
-                    CommonUtils.showToast(MainActivity.this, "输入内容不能为空");
+                    showToast("输入内容不能为空", 1);
                     return;
                 }
                 if (!content.equals("6666")) {
-                    CommonUtils.showToast(MainActivity.this, "输入密码错误");
+                    showToast("输入密码错误", 1);
                     return;
                 }
                 mPop_change.dismiss();
@@ -804,11 +817,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String edtTxt = inputPsw.getText().toString();
                 if (edtTxt.isEmpty()) {
-                    CommonUtils.showToast(MainActivity.this, "输入内容不能为空");
+                    showToast("输入内容不能为空", 1);
                     return;
                 }
                 if (!edtTxt.equals("uboxol")) {
-                    CommonUtils.showToast(MainActivity.this, "输入密码错误");
+                    showToast("输入密码错误", 1);
                     return;
                 }
                 dialog.dismiss();
@@ -922,11 +935,11 @@ public class MainActivity extends AppCompatActivity {
                             String ccc = adapter.getAccountData().get(i).getOpenPhone();
                             String ddd = adapter.getAccountData().get(i).getOpenBank();
                             String str = aaa + "\n" + bbb + "\n" + ccc + "\n" + ddd;
-                            CommonUtils.showToast(MainActivity.this, str);
+                            showToast(str, 1);
                         }
                     }
                 } else {
-                    CommonUtils.showToast(MainActivity.this, "取消");
+                    showToast("取消", 1);
                 }
             }
         }).show(MainActivity.this.getSupportFragmentManager(), "dialog");
@@ -964,11 +977,11 @@ public class MainActivity extends AppCompatActivity {
                             String aaa = adapter.getAccountData().get(i).name;
                             String bbb = adapter.getAccountData().get(i).num;
                             String str = "加盟名称" + aaa + "==加盟客编" + bbb;
-                            CommonUtils.showToast(MainActivity.this, str);
+                            showToast(str, 1);
                         }
                     }
                 } else {
-                    CommonUtils.showToast(MainActivity.this, "取消");
+                    showToast("取消", 1);
                 }
             }
         }).show(MainActivity.this.getSupportFragmentManager(), "dialog");

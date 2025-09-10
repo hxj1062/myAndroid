@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 
-public class UITreadActivity extends AppCompatActivity implements View.OnClickListener {
+public class UITreadActivity extends MyBaseActivity implements View.OnClickListener {
 
     TextView textView;
 
@@ -32,6 +32,7 @@ public class UITreadActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_u_i_tread);
+        buildActionBar();
         findViewById(R.id.btn_download).setOnClickListener(this);
         textView = findViewById(R.id.tv_txt1);
 

@@ -6,8 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.bean.MessageEvent;
 
@@ -15,19 +14,20 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class EvenBus01Activity extends AppCompatActivity {
+public class EvenBus01ActivityMy extends MyBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_even_bus01);
+        buildActionBar();
         EventBus.getDefault().register(this);
         EditText edtContent1 = findViewById(R.id.edt_content1);
         findViewById(R.id.tv_bus1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().postSticky(new MessageEvent(edtContent1.getText().toString()));
-                Intent intent = new Intent(EvenBus01Activity.this, EvenBus02Activity.class);
+                Intent intent = new Intent(EvenBus01ActivityMy.this, EvenBus02Activity.class);
                 startActivity(intent);
             }
         });

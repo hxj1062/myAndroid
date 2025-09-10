@@ -6,8 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 
  /**
@@ -15,7 +14,7 @@ import com.example.look.R;
   * <p>
   * Created by hxj on
   */
-public class CountDownActivity extends AppCompatActivity {
+public class CountDownActivity extends MyBaseActivity {
 
     TextView tvCount111, tvCount222;
     private int seconds = 10;
@@ -42,6 +41,7 @@ public class CountDownActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count_down);
+        buildActionBar();
         tvCount111 = findViewById(R.id.tv_count1);
         tvCount222 = findViewById(R.id.tv_count2);
 

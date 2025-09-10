@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.bean.DataSingleton;
 import com.example.look.bean.Student;
@@ -16,17 +15,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
- /**
-  * desc: 数据传递方式
-  * <p>
-  * Created by hxj on
-  */
-public class DataATransferActivity extends AppCompatActivity implements View.OnClickListener {
+
+/**
+ * desc: 数据传递方式
+ * <p>
+ * Created by hxj on
+ */
+public class DataATransferActivity extends MyBaseActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_a_transfer);
+        buildActionBar();
 
         findViewById(R.id.btn_simple).setOnClickListener(this);
         findViewById(R.id.btn_complex).setOnClickListener(this);
@@ -73,17 +74,17 @@ public class DataATransferActivity extends AppCompatActivity implements View.OnC
 
     private void testComplexData(Intent intent) {
 
-        Map<String,String> strMap = new HashMap<>();
-        strMap.put("flag","2");
-        strMap.put("str","利用Intent对象携带如ArrayList之类复杂些的数据");
-        List<Map<String ,String>> list = new ArrayList<>();
+        Map<String, String> strMap = new HashMap<>();
+        strMap.put("flag", "2");
+        strMap.put("str", "利用Intent对象携带如ArrayList之类复杂些的数据");
+        List<Map<String, String>> list = new ArrayList<>();
 
         Bundle bundleList = new Bundle();
         // 在bundle中携带集合数据时,必须先定义一个 ArrayList<String> 类型
         ArrayList arrayList = new ArrayList();
         arrayList.add(list);
 
-        bundleList.putStringArrayList("list",arrayList);
+        bundleList.putStringArrayList("list", arrayList);
         intent.putExtras(bundleList);
         startActivity(intent);
 
@@ -93,7 +94,7 @@ public class DataATransferActivity extends AppCompatActivity implements View.OnC
         Student student = new Student();
         student.setAge(19);
         student.setName("通过Serializable传递对象");
-        intent.putExtra("serializable",student);
+        intent.putExtra("serializable", student);
         startActivity(intent);
     }
 
@@ -101,7 +102,7 @@ public class DataATransferActivity extends AppCompatActivity implements View.OnC
         Student2 student2 = new Student2();
         student2.setAge(18);
         student2.setContent("通过Parcelable传递对象");
-        intent.putExtra("parcelable",student2);
+        intent.putExtra("parcelable", student2);
         startActivity(intent);
     }
 

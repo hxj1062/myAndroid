@@ -11,8 +11,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.bean.WebData;
 import com.google.gson.Gson;
@@ -21,7 +20,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class WebViewActivity extends AppCompatActivity {
+public class WebViewActivity extends MyBaseActivity {
 
     private WebView lookWeb;
     String str;
@@ -30,6 +29,7 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
+        buildActionBar();
         lookWeb = findViewById(R.id.wv_web);
         str = readJs("err-upload.js");
         Log.d("io流读取JS文件", str);
@@ -125,7 +125,6 @@ public class WebViewActivity extends AppCompatActivity {
         }
         return jsStr;
     }
-
 
 
     class WebJsBridge {

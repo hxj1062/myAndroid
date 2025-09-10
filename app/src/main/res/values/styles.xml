@@ -6,16 +6,9 @@
         <item name="colorPrimary">@color/app_main</item>
         <item name="colorPrimaryDark">@color/app_main</item>
         <item name="colorAccent">@color/app_main</item>
-        <item name="windowActionBar">false</item>
+        <item name="windowActionBar">true</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/app_word</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="StartTheme" parent="AppTheme">
-        <item name="android:windowFullscreen">true</item>
-        <item name="windowNoTitle">true</item>
-        <!--        <item name="android:windowBackground">@drawable/background_img</item>-->
     </style>
 
     <style name="QrCodeDialog" parent="Theme.AppCompat.Light.NoActionBar">

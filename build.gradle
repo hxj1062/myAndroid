@@ -38,6 +38,11 @@ allprojects {
         maven {
             url 'https://developer.huawei.com/repo/'
         }
+        maven {
+            allowInsecureProtocol = true
+//            url 'https://maven.google.com'  // 有外网
+            url 'https://maven.aliyun.com/repository/google'  // 无外网
+        }
 
     }
 }
@@ -48,7 +53,7 @@ task clean(type: Delete) {
 
 ext {
     compileSdkVersion = 34
-    minSdkVersion = 21
+    minSdkVersion = 24
     targetSdkVersion = 28
     versionCode = 100
     versionName = "1.0.0"

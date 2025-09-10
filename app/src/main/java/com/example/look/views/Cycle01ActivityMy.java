@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.utils.MLog;
 
@@ -14,18 +13,19 @@ import com.example.look.utils.MLog;
  * <p>
  * Created by hxj on
  */
-public class Cycle01Activity extends AppCompatActivity {
+public class Cycle01ActivityMy extends MyBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MLog.d("生命周期=A页调用onCreate");
         setContentView(R.layout.activity_cycle01);
+        buildActionBar();
 
         findViewById(R.id.btn_Ajump).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Cycle01Activity.this, Cycle02Activity.class);
+                Intent intent = new Intent(Cycle01ActivityMy.this, Cycle02Activity.class);
                 startActivity(intent);
             }
         });

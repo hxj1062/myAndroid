@@ -6,8 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.bean.MessageEvent;
 
@@ -19,7 +18,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * desc: 发布者先发送了事件，但是此时订阅者还未产生，一段时间后订阅者才订阅了该事件，也就是使得在发送事件之后订阅者再订阅该事件也能收到该事件。
  * <p>
  */
-public class EvenBus02Activity extends AppCompatActivity {
+public class EvenBus02Activity extends MyBaseActivity {
 
     TextView tvContent;
 
@@ -27,6 +26,7 @@ public class EvenBus02Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_even_bus02);
+        buildActionBar();
         tvContent = findViewById(R.id.tv_busText2);
         EditText edtContent2 = findViewById(R.id.edt_content2);
 

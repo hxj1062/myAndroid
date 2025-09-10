@@ -3,8 +3,7 @@ package com.example.look.views;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.adpter.AboutListViewAdapter;
 import com.example.look.bean.Person;
@@ -12,7 +11,7 @@ import com.example.look.bean.Person;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AboutListViewActivity extends AppCompatActivity {
+public class AboutListViewActivity extends MyBaseActivity {
 
     private List<Person> personList = new ArrayList<>();
     private AboutListViewAdapter listViewAdapter;
@@ -22,6 +21,7 @@ public class AboutListViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_list_view);
+        buildActionBar();
         initView();
     }
 

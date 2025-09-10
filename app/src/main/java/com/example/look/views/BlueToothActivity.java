@@ -5,22 +5,22 @@ import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 
-public class BlueToothActivity extends AppCompatActivity {
+public class BlueToothActivity extends MyBaseActivity {
 
     // 控制蓝牙的服务代理
-    private BluetoothHeadset mBluetoothHeadset ;
+    private BluetoothHeadset mBluetoothHeadset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blue_tooth);
+        buildActionBar();
     }
 
-    private void blueToothSetting(){
+    private void blueToothSetting() {
         // 获取蓝牙适配器
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         // 设置 BluetoothProfile.ServiceListener,该监听器,会在客户端连接和断连时发出通知
@@ -31,9 +31,9 @@ public class BlueToothActivity extends AppCompatActivity {
     private BluetoothProfile.ServiceListener profileListener = new BluetoothProfile.ServiceListener() {
         @Override
         public void onServiceConnected(int profile, BluetoothProfile proxy) {
-           if(profile ==BluetoothProfile.HEADSET){
-               mBluetoothHeadset = (BluetoothHeadset)proxy ;
-           }
+            if (profile == BluetoothProfile.HEADSET) {
+                mBluetoothHeadset = (BluetoothHeadset) proxy;
+            }
         }
 
         @Override
@@ -42,7 +42,7 @@ public class BlueToothActivity extends AppCompatActivity {
                 mBluetoothHeadset = null;
             }
         }
-    } ;
+    };
 
 
 }

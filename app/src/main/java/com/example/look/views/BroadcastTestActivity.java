@@ -5,12 +5,11 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 
 
-public class BroadcastTestActivity extends AppCompatActivity implements View.OnClickListener {
+public class BroadcastTestActivity extends MyBaseActivity implements View.OnClickListener {
 
     public static final String MY_ACTION = "hello world";
     private BroadcastTestReceiver receiverDemo;
@@ -19,6 +18,7 @@ public class BroadcastTestActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadcast);
+        buildActionBar();
         findViewId();
         registerBroadCast();
     }

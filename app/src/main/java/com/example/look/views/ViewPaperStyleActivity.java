@@ -4,16 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.adpter.ViewPaperStyleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPaperStyleActivity extends AppCompatActivity {
+public class ViewPaperStyleActivity extends MyBaseActivity {
 
     List<String> mStrings;
     List<View> mViews;
@@ -24,6 +24,7 @@ public class ViewPaperStyleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_paper_style);
+        buildActionBar();
         mViewPager = (ViewPager) findViewById(R.id.papaer);
         mStrings = new ArrayList<>();
 

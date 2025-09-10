@@ -11,14 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GoodsListActivity extends AppCompatActivity {
+public class GoodsListActivityMy extends MyBaseActivity {
 
     public static class TestModel {
         public String name;
@@ -44,6 +43,7 @@ public class GoodsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_list);
+        buildActionBar();
 
         ListView lvGoods = findViewById(R.id.lv_goods);
 

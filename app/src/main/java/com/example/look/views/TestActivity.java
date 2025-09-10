@@ -5,12 +5,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.utils.CommonUtils;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends MyBaseActivity {
 
     private int listabc;
 
@@ -18,7 +17,8 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        buildActionBar();
+
     }
 
 
@@ -55,7 +55,7 @@ public class TestActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_two_01) {
-            CommonUtils.showToast(this, "右上角机器配置");
+            showToast("右上角机器配置", 1);
         }
         return super.onOptionsItemSelected(item);
     }

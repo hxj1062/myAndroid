@@ -3,8 +3,7 @@ package com.example.look.views;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.look.MyBaseActivity;
 import com.example.look.R;
 import com.example.look.utils.MLog;
 
@@ -14,13 +13,14 @@ import com.example.look.utils.MLog;
  * <p>
  * Created by hxj on
  */
-public class Cycle02Activity extends AppCompatActivity {
+public class Cycle02Activity extends MyBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MLog.d("生命周期=B页调用onCreate");
         setContentView(R.layout.activity_cycle02);
+        buildActionBar();
 
         findViewById(R.id.btn_Bjump).setOnClickListener(new View.OnClickListener() {
             @Override

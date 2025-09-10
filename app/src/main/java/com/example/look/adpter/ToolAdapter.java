@@ -34,7 +34,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolViewHolder
     public void onBindViewHolder(@NonNull ToolViewHolder holder, final int position) {
         holder.btContent.setText(toolMap.get(position));
         if (onToolClickListener != null) {
-            holder.btContent.setOnClickListener(view -> onToolClickListener.onToolClick(holder.getBindingAdapterPosition(), toolMap.get(holder.getBindingAdapterPosition())));
+            holder.btContent.setOnClickListener(view -> onToolClickListener.onToolClick(holder.getBindingAdapterPosition()));
         }
     }
 
@@ -44,7 +44,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ToolViewHolder
     }
 
     public interface OnToolClickListener {
-        void onToolClick(int tag, String content);
+        void onToolClick(int tag);
     }
 
     public static class ToolViewHolder extends RecyclerView.ViewHolder {

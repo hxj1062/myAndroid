@@ -5,11 +5,12 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.CAMERA" /> <!--安卓8.0适配安装APK-->
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /> <!--蓝牙相关-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!--用于访问GPS定位-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!--用于访问wifi网络信息,wifi信息会用于进行网络定位-->
@@ -58,6 +59,7 @@
         <activity android:name=".scan.ScanCodeActivity" />
         <activity android:name=".views.BroadcastTestActivity" />
         <activity android:name=".views.GoodsListActivityMy" />
+        <activity android:name=".realm.WebPersonActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -60,6 +60,7 @@ import com.example.look.customview.LinePlanDialog;
 import com.example.look.customview.NoticeDialog;
 import com.example.look.customview.PopupWindowDialog;
 import com.example.look.customview.UrlDialog;
+import com.example.look.realm.WebPersonActivity;
 import com.example.look.scan.ScanCodeActivity;
 import com.example.look.utils.DimensionUtil;
 import com.example.look.views.CountDownActivity;
@@ -126,6 +127,7 @@ public class MainActivity extends MyBaseActivity {
                 put(22, "扫码测试");
                 put(23, "文案显示");
                 put(24, "蓝牙示例");
+                put(25, "实名认证");
             }}
     );
 
@@ -260,6 +262,9 @@ public class MainActivity extends MyBaseActivity {
                 break;
             case 24:
                 startActivity(new Intent(MainActivity.this, BluetoothTaskActivity.class));
+                break;
+            case 25:
+                startActivity(new Intent(MainActivity.this, WebPersonActivity.class));
                 break;
             default:
                 showToast("事件", 1);

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.look.MyBaseActivity
 import com.example.look.R
 import com.example.look.utils.BluetoothUtils
+import com.example.look.utils.LogUtil
 import kotlinx.android.synthetic.main.activity_bluetooth_task.iv_refreshDevice
 import kotlinx.android.synthetic.main.activity_bluetooth_task.rv_btDevice
 import kotlinx.coroutines.Dispatchers
@@ -67,7 +68,7 @@ class BluetoothTaskActivity : MyBaseActivity() {
      */
     private lateinit var mBluetoothAdapter: BluetoothAdapter
     private var mBluetoothSocket: BluetoothSocket? = null
-    private val BT_UUID = "00001106-0000-1000-8000-00805F9B34FB"
+    private val BT_UUID = "00001101-0000-1000-8000-00805F9B34FB"
 
     private var mReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -240,35 +241,35 @@ class BluetoothTaskActivity : MyBaseActivity() {
             val bluetoothDevice =
                 BluetoothAdapter.getDefaultAdapter().getRemoteDevice(deviceAddress)
 
-            //10未配对 进行配对
-            if (device.mBtStatus == BluetoothDevice.BOND_NONE) {
-                try {
-                    // 与设备配对
-                    if (BluetoothUtils.createBond(bluetoothDevice.javaClass, bluetoothDevice)) {
-                        deviceStatus = 12
-                        device.mBtStatus = 12
-                        runOnUiThread {
-                            showToast("开始配对", 0)
-                        }
-                    } else {
-                        deviceStatus = 10
-                        device.mBtStatus = 10
-                        runOnUiThread {
-                            showToast("配对失败", 0)
-                        }
-                    }
-                } catch (e: java.lang.Exception) {
-                    e.printStackTrace()
-                }
-            }
+//            //10未配对 进行配对
+//            if (device.mBtStatus == BluetoothDevice.BOND_NONE) {
+//                try {
+//                    // 与设备配对
+//                    if (BluetoothUtils.createBond(bluetoothDevice.javaClass, bluetoothDevice)) {
+//                        deviceStatus = 12
+//                        device.mBtStatus = 12
+//                        runOnUiThread {
+//                            showToast("开始配对", 0)
+//                        }
+//                    } else {
+//                        deviceStatus = 10
+//                        device.mBtStatus = 10
+//                        runOnUiThread {
+//                            showToast("配对失败", 0)
+//                        }
+//                    }
+//                } catch (e: java.lang.Exception) {
+//                    e.printStackTrace()
+//                }
+//            }
 
             //12已配对 进行连接
-            if (deviceStatus == BluetoothDevice.BOND_BONDED) {
-                connectBt(bluetoothDevice)
-                device.mBtStatus = 14
-            } else {
-                showToast("连接失败", 0)
-            }
+//            if (deviceStatus == BluetoothDevice.BOND_BONDED) {
+            connectBt(bluetoothDevice)
+            device.mBtStatus = 14
+//            } else {
+//                showToast("连接失败", 0)
+//            }
         }
         btDeviceAdapter.notifyDataSetChanged()
     }
@@ -372,17 +373,19 @@ class BluetoothTaskActivity : MyBaseActivity() {
                     mBluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(UUID.fromString(BT_UUID))
                     if (mBluetoothSocket != null && !mBluetoothSocket!!.isConnected) {
                         mBluetoothSocket!!.connect()
-                        showToast("设备连接成功", 0)
+                        //  showToast("设备连接成功", 0)
+                        Log.d("蓝牙socket=", "设备连接成功")
                     }
                 } catch (e: IOException) {
-                   // showToast("设备连接失败", 0)
-                     Log.d("蓝牙socket=", "设备连接失败")
+                    // showToast("设备连接失败", 0)
+                    LogUtil.logStack(e, "蓝牙socket")
+                    Log.d("蓝牙socket=", "设备连接失败")
                     try {
                         mBluetoothSocket!!.close()
                     } catch (e1: IOException) {
                         e1.printStackTrace()
                         Log.d("蓝牙socket=", "socket关闭失败")
-                       // showToast("socket关闭失败", 0)
+                        // showToast("socket关闭失败", 0)
                     }
                 }
             }
@@ -392,24 +395,24 @@ class BluetoothTaskActivity : MyBaseActivity() {
     /**
      * 读取数据
      */
-    private suspend fun readDataFromSocket():String{
+    private suspend fun readDataFromSocket(): String {
         val sb = StringBuffer()
         var inputStream: BufferedInputStream? = null
         try {
-            inputStream =  BufferedInputStream(mBluetoothSocket!!.inputStream)
+            inputStream = BufferedInputStream(mBluetoothSocket!!.inputStream)
             var length = 0;
             val buf = ByteArray(1024)
 
             while ((inputStream.read(buf)).also { length = it } != -1) {
-                sb.append(String(buf,0,length));
+                sb.append(String(buf, 0, length));
             }
             return sb.toString()
         } catch (e: IOException) {
             e.printStackTrace()
-        }finally {
+        } finally {
             try {
                 inputStream!!.close();
-            } catch (e:IOException ) {
+            } catch (e: IOException) {
                 e.printStackTrace();
             }
         }
@@ -419,17 +422,17 @@ class BluetoothTaskActivity : MyBaseActivity() {
     /**
      * 写数据
      */
-    private suspend fun writeDataToSocket(str:String){
+    private suspend fun writeDataToSocket(str: String) {
         var outputstream: OutputStream? = null
         try {
             outputstream = mBluetoothSocket!!.outputStream
             outputstream.write(str.toByteArray())
         } catch (e: IOException) {
             e.printStackTrace()
-        }finally {
+        } finally {
             try {
                 outputstream!!.close();
-            } catch (e:IOException ) {
+            } catch (e: IOException) {
                 e.printStackTrace();
             }
         }

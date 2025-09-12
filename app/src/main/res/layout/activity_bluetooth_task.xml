@@ -13,7 +13,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
+            android:background="@color/color_F5F5F5"
             android:gravity="center_vertical"
             android:padding="10dp">
 
@@ -22,37 +23,62 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
-                android:text="搜索设备"
+                android:text="可用设备"
                 android:textColor="@color/color_333333"
                 android:textSize="@dimen/font_16" />
 
             <ImageView
                 android:id="@+id/iv_refreshDevice"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:padding="@dimen/dp_4"
                 android:src="@drawable/ic_refresh" />
 
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/color_F5F5F5"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:text="可用设备"
-            android:textColor="@color/color_666666"
-            android:textSize="@dimen/font_14" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_btDevice"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             tools:itemCount="3"
             tools:listitem="@layout/item_bt_info" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_login_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="发送消息"
+                android:textSize="@dimen/font_16" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edt_login_phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="输入消息"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:singleLine="true"
+                    android:textColorHint="@color/color_CCCCCC"
+                    android:textSize="@dimen/font_16" />
+
+            </FrameLayout>
+
+        </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
